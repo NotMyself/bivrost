@@ -7,6 +7,9 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Serilog;
+using Serilog.Events;
+using Serilog.Sinks.SystemConsole.Themes;
 
 namespace Bivrost.Web
 {
@@ -14,12 +17,24 @@ namespace Bivrost.Web
   {
     public static void Main(string[] args)
     {
-      CreateWebHostBuilder(args).Build().Run();
+      Log.Logger = new LoggerConfiguration()
+            .Enrich.FromLogContext()
+            .WriteTo.Console(theme: AnsiConsoleTheme.Code)
+            .CreateLogger();
+
+      try
+      {
+        CreateWebHostBuilder(args).Build().Run();
+      }
+      finally
+      {
+        Log.CloseAndFlush();
+      }
     }
 
     public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         WebHost.CreateDefaultBuilder(args)
-            .ConfigureAppConfiguration((ContextBoundObject, config) =>
+            .ConfigureAppConfiguration((context, config) =>
             {
               config.AddEnvironmentVariables(prefix: "BIVROST_");
             })

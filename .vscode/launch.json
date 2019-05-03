@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/src/Bivrost.Web/bin/Debug/netcoreapp2.2/Bivrost.Web.dll",
+            "program": "${workspaceFolder}/src/server/bin/Debug/netcoreapp2.2/server.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/src/Bivrost.Web",
+            "cwd": "${workspaceFolder}/src/server",
             "stopAtEntry": false,
             "launchBrowser": {
                 "enabled": true

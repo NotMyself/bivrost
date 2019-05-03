@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace Bivrost.Web
 {
@@ -18,6 +20,11 @@ namespace Bivrost.Web
     {
       services.AddTwitchClient(Configuration);
       services.AddTwitchBot(Configuration);
+      services.AddLogging(builder => {
+        // we only want to use serilog
+        builder.ClearProviders();
+        builder.AddSerilog();
+      });
     }
 
     public void Configure(IApplicationBuilder app, IHostingEnvironment env)

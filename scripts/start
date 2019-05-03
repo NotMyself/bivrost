@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-echo "Starting Bivrost Web"
+echo "Starting Bivrost Server"
 
 dotnet run \
   --configuration Debug \
-  --project src/Bivrost.Web
+  --project src/server
