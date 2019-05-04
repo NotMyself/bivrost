@@ -31,9 +31,15 @@ namespace Bivrost.Web
       });
 
       services.AddTwitchClient(Configuration);
-      services.AddTwitchBot(Configuration);
+      //services.AddTwitchBot(Configuration);
 
       services.AddMvc();
+      // In production, the Vue files will be served
+      //  from this directory
+      services.AddSpaStaticFiles(configuration =>
+      {
+          configuration.RootPath = Configuration["Client"];
+      });
     }
 
     public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -43,11 +49,9 @@ namespace Bivrost.Web
         app.UseDeveloperExceptionPage();
         app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions {
             HotModuleReplacement = true,
-            ProjectPath = Path.Combine(env.ContentRootPath, "../client"),
-            ConfigFile = Path.Combine(env.ContentRootPath, "../client/node_modules/@vue/cli-service/webpack.config.js")
-
+            ProjectPath = Path.Combine(env.ContentRootPath, Configuration["ClientProjectPath"]),
+            ConfigFile = Path.Combine(env.ContentRootPath, Configuration["ClientProjectConfigPath"])
         });
-
       }
 
       app.UseDefaultFiles();
