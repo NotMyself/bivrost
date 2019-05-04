@@ -34,6 +34,7 @@ namespace Bivrost.Web
 
     public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         WebHost.CreateDefaultBuilder(args)
+            .UseContentRoot(Directory.GetCurrentDirectory())
             .ConfigureAppConfiguration((context, config) =>
             {
               config.AddEnvironmentVariables(prefix: "BIVROST_");

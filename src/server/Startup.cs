@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.IO;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using Serilog;
 
@@ -18,13 +21,19 @@ namespace Bivrost.Web
     }
     public void ConfigureServices(IServiceCollection services)
     {
-      services.AddTwitchClient(Configuration);
-      services.AddTwitchBot(Configuration);
-      services.AddLogging(builder => {
+
+
+      services.AddLogging(builder =>
+      {
         // we only want to use serilog
         builder.ClearProviders();
         builder.AddSerilog();
       });
+
+      services.AddTwitchClient(Configuration);
+      services.AddTwitchBot(Configuration);
+
+      services.AddMvc();
     }
 
     public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -32,11 +41,26 @@ namespace Bivrost.Web
       if (env.IsDevelopment())
       {
         app.UseDeveloperExceptionPage();
+        app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions {
+            HotModuleReplacement = true,
+            ProjectPath = Path.Combine(env.ContentRootPath, "../client"),
+            ConfigFile = Path.Combine(env.ContentRootPath, "../client/node_modules/@vue/cli-service/webpack.config.js")
+
+        });
+
       }
 
-      app.Run(async (context) =>
+      app.UseDefaultFiles();
+      app.UseStaticFiles();
+      app.UseMvc(routes =>
       {
-        await context.Response.WriteAsync("Hello World");
+          routes.MapRoute(
+              name: "default",
+              template: "{controller=Home}/{action=Index}/{id?}");
+
+          routes.MapSpaFallbackRoute(
+              name: "spa-fallback",
+              defaults: new { controller = "Home", action = "Index" });
       });
     }
   }
