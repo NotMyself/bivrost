@@ -11,13 +11,13 @@ namespace Bivrost.Web.Twitch
 {
   public class Bot : IHostedService
   {
-    private TwitchClient Client { get; }
     public ILogger<Bot> Logger { get; }
+    private TwitchClient Client { get; }
 
     public Bot(TwitchClient client, ILogger<Bot> logger)
     {
       Client = client ?? throw new System.ArgumentNullException(nameof(client));
-      Logger = logger;
+      Logger = logger ?? throw new System.ArgumentNullException(nameof(logger));
     }
 
     public Task StartAsync(CancellationToken cancellationToken)
@@ -40,7 +40,11 @@ namespace Bivrost.Web.Twitch
 
     public Task StopAsync(CancellationToken cancellationToken)
     {
-      throw new System.NotImplementedException();
+      return Task.Run(() => {
+        Logger.LogInformation("Disconnecting from Twitch as {User}",
+                            Client.ConnectionCredentials.TwitchUsername);
+        Client.Disconnect();
+      });
     }
 
     private void OnConnected(object sender, OnConnectedArgs e)
