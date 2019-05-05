@@ -68,7 +68,7 @@ namespace Bivrost.Web.Twitch
     {
       Logger.LogInformation("Joined Channel {@Event}", new { e.BotUsername, e.Channel });
 
-      Client.SendMessage(e.Channel, "auth0bHype Bivrost Bot Has Joined auth0bHype");
+      Client.SendMessage(e.Channel, "auth0bHype Bivrost has joined. auth0bHype");
     }
 
     private void OnUserJoined(object sender, OnUserJoinedArgs e)
