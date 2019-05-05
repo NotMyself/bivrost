@@ -1,5 +1,10 @@
 {
   "version": 1,
   "name": "bivrost",
-  "alias": "bivrost.notmyself.io"
+  "alias": "bivrost.notmyself.io",
+  "env": {
+    "BIVROST_TWITCH_BOT_USER_NAME":"did-not-find-a-valid-env-var-on-now",
+    "BIVROST_TWITCH_BOT_CHANNEL":"did-not-find-a-valid-env-var-on-now",
+    "BIVROST_TWITCH_BOT_ACCESS_TOKEN":"did-not-find-a-valid-env-var-on-now"
+  }
 }
