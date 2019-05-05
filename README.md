@@ -1,6 +1,6 @@
 # Bivrost
 
-![Bivrost](/docs/images/bivrost_header.jpg?raw=true "Bivrost")
+![Bivrost](/docs/images/bivrost-readme-header.jpg?raw=true "Bivrost")
 
 "In Norse mythology, Bivrost is a burning rainbow bridge that reaches between Midguard and Asgard, the realm of the gods." - [WikiPedia](https://en.wikipedia.org/wiki/Bifr%C3%B6st)
 
@@ -57,6 +57,14 @@ You will need to generate an OAuth authorization token with several specific sco
 | BIVROST_TWITCH_BOT_USER_NAME | Twitch Account Username for Bot |
 | BIVROST_TWITCH_BOT_ACCESS_TOKEN | OAuth Access Token for Twitch Account |
 | BIVROST_TWITCH_BOT_CHANNEL | Twitch Chat Channel for Bot to join and listen. |
+
+### Screen Shots
+
+#### Bivrost On Join Message
+
+When the bot is successfully configured, it will announce it's arrival in chat like this:
+
+![Bivrost On Join Message](/docs/images/bivrost-on-join-messsage.png?raw=true "Bivrost On Join Message")
 
 ### External Dependencies
 
