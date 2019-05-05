@@ -22,6 +22,6 @@ cp -r dist/. ../../build/client
 popd > /dev/null
 
 pushd ./build/server
-ASPNETCORE_ENVIRONMENT=Production dotnet \
+ASPNETCORE_ENVIRONMENT=Production Client=../client dotnet \
   ./server.dll
 popd > /dev/null

@@ -31,4 +31,4 @@ EXPOSE 80
 
 WORKDIR /app/server
 
-ENTRYPOINT [ "dotnet", "server/server.dll" ]
+ENTRYPOINT [ "dotnet", "server.dll" ]
