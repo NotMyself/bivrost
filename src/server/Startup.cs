@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -54,8 +55,11 @@ namespace Bivrost.Web
         });
       }
 
-      app.UseDefaultFiles();
-      app.UseStaticFiles();
+      app.UseSpaStaticFiles();
+      app.UseSpa(spa => {
+        spa.Options.DefaultPage = "/index.html";
+      });
+
       app.UseMvc(routes =>
       {
           routes.MapRoute(
