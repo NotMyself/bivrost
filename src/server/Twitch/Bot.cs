@@ -1,6 +1,8 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Bivrost.Web.Signalr;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using TwitchLib.Client;
@@ -13,10 +15,12 @@ namespace Bivrost.Web.Twitch
   {
     public ILogger<Bot> Logger { get; }
     private TwitchClient Client { get; }
+    public IHubContext<ClientHub> HubContext { get; }
 
-    public Bot(TwitchClient client, ILogger<Bot> logger)
+    public Bot(TwitchClient client, IHubContext<ClientHub> hubContext, ILogger<Bot> logger)
     {
       Client = client ?? throw new System.ArgumentNullException(nameof(client));
+      HubContext = hubContext ?? throw new System.ArgumentNullException(nameof(hubContext));
       Logger = logger ?? throw new System.ArgumentNullException(nameof(logger));
     }
 
@@ -80,6 +84,8 @@ namespace Bivrost.Web.Twitch
     {
       Logger.LogInformation("Message {@Event}",
         new { e.ChatMessage.DisplayName, e.ChatMessage.Message });
+
+      HubContext.Clients.All.SendAsync("ReceiveChatMessage", e.ChatMessage);
     }
 
     private void OnWhisperReceived(object sender, OnWhisperReceivedArgs e)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Bivrost.Web.Signalr;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -35,6 +36,10 @@ namespace Bivrost.Web
       services.AddTwitchBot(Configuration);
 
       services.AddMvc();
+      services.AddSignalR(config =>
+            {
+                config.EnableDetailedErrors = true;
+            });
       // In production, the Vue files will be served
       //  from this directory
       services.AddSpaStaticFiles(configuration =>
@@ -55,10 +60,17 @@ namespace Bivrost.Web
         });
       }
 
-      app.UseSpaStaticFiles();
-      app.UseSpa(spa => {
-        spa.Options.DefaultPage = "/index.html";
-      });
+      if(env.IsProduction()) {
+        app.UseSpaStaticFiles();
+        app.UseSpa(spa => {
+          spa.Options.DefaultPage = "/index.html";
+        });
+      }
+
+      app.UseSignalR(routes =>
+            {
+                routes.MapHub<ClientHub>("/client-hub");
+            });
 
       app.UseMvc(routes =>
       {

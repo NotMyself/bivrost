@@ -12,6 +12,12 @@ export default {
   name: 'app',
   components: {
     HelloWorld
+  },
+  sockets: {
+    receiveChatMessage(message) {
+      // eslint-disable-next-line no-console
+      console.log(message);
+    },
   }
 }
 </script>
