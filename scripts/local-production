@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+echo "Starting Production Bivrost Server"
+
+rm -rf build
+mkdir build
+mkdir build/server
+mkdir build/client
+
+dotnet build \
+  --configuration Release \
+  ./src/server
+
+dotnet publish \
+  --configuration Release \
+  --output ../../build/server \
+  ./src/server
+
+pushd src/client
+npm run build
+cp -r dist/. ../../build/client
+popd > /dev/null
+
+pushd ./build/server
+ASPNETCORE_ENVIRONMENT=Production dotnet \
+  ./server.dll
+popd > /dev/null

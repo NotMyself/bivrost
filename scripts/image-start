@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+echo "Starting Docker Image"
+
+docker run --rm -it -p 80:80/tcp bivrost:latest

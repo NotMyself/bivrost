@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -40,6 +41,10 @@ namespace Bivrost.Web
       {
           configuration.RootPath = Configuration["Client"];
       });
+
+      Console.WriteLine(Directory.GetCurrentDirectory());
+      Console.WriteLine(Configuration["Client"]);
+      Console.WriteLine(Configuration["BIVROST_TWITCH_BOT_USER_NAME"]);
     }
 
     public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -55,6 +60,7 @@ namespace Bivrost.Web
       }
 
       app.UseDefaultFiles();
+      app.UseSpaStaticFiles();
       app.UseStaticFiles();
       app.UseMvc(routes =>
       {
