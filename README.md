@@ -6,6 +6,8 @@
 
 ## About
 
+Bivrost is a asp.net core application that offers several overlay endpoints, hosts a Twitch.tv bot and bridges the two together to display chat events in OBS while streaming.
+
 ## Getting Started
 
 ### Running in Docker
