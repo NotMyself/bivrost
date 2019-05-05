@@ -32,7 +32,7 @@ namespace Bivrost.Web
       });
 
       services.AddTwitchClient(Configuration);
-      //services.AddTwitchBot(Configuration);
+      services.AddTwitchBot(Configuration);
 
       services.AddMvc();
       // In production, the Vue files will be served
