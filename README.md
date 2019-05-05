@@ -1,5 +1,9 @@
 # Bivrost
 
+![Bivrost](/docs/images/bivrost_header.jpg?raw=true "Bivrost")
+
+In Norse mythology, Bivrost is a burning rainbow bridge that reaches between Midguard and Asgard, the realm of the gods.
+
 ## About
 
 ## Getting Started
