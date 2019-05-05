@@ -41,10 +41,6 @@ namespace Bivrost.Web
       {
           configuration.RootPath = Configuration["Client"];
       });
-
-      Console.WriteLine(Directory.GetCurrentDirectory());
-      Console.WriteLine(Configuration["Client"]);
-      Console.WriteLine(Configuration["BIVROST_TWITCH_BOT_USER_NAME"]);
     }
 
     public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -61,17 +57,16 @@ namespace Bivrost.Web
 
       app.UseDefaultFiles();
       app.UseSpaStaticFiles();
-      app.UseStaticFiles();
-      app.UseMvc(routes =>
-      {
-          routes.MapRoute(
-              name: "default",
-              template: "{controller=Home}/{action=Index}/{id?}");
+      // app.UseMvc(routes =>
+      // {
+      //     routes.MapRoute(
+      //         name: "default",
+      //         template: "{controller=Home}/{action=Index}/{id?}");
 
-          routes.MapSpaFallbackRoute(
-              name: "spa-fallback",
-              defaults: new { controller = "Home", action = "Index" });
-      });
+      //     routes.MapSpaFallbackRoute(
+      //         name: "spa-fallback",
+      //         defaults: new { controller = "Home", action = "Index" });
+      // });
     }
   }
 }
