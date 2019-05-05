@@ -19,7 +19,6 @@
             },
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development",
-                "BIVROST_ENV_VARS_LOADED":"true"
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"

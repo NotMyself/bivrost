@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+echo "Initializing Bivrost Local Environment"
+
+pushd ./src/client
+
+npm -i
+
+popd > /dev/null
+
+pushd /src/server
+
+dotnet restore .
+
+popd > /dev/null

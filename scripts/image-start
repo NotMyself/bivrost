@@ -2,4 +2,8 @@
 
 echo "Starting Docker Image"
 
-docker run --rm -it -p 80:80/tcp bivrost:latest
+docker run --rm -it -p 80:80/tcp \
+  -e BIVROST_TWITCH_BOT_USER_NAME="$BIVROST_TWITCH_BOT_USER_NAME" \
+  -e BIVROST_TWITCH_BOT_ACCESS_TOKEN="$BIVROST_TWITCH_BOT_ACCESS_TOKEN" \
+  -e BIVROST_TWITCH_BOT_CHANNEL="$BIVROST_TWITCH_BOT_CHANNEL" \
+  bivrost:latest
