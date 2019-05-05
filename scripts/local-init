@@ -4,7 +4,7 @@ echo "Initializing Bivrost Local Environment"
 
 pushd ./src/client
 
-npm -i
+npm i
 
 popd > /dev/null
 

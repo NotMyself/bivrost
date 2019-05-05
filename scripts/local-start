@@ -2,6 +2,6 @@
 
 echo "Starting Bivrost Server"
 
-dotnet watch run \
+dotnet run \
   --configuration Debug \
-  --project src/server
+  --project src/server/
