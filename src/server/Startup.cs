@@ -55,8 +55,9 @@ namespace Bivrost.Web
         });
       }
 
-      app.UseDefaultFiles();
       app.UseSpaStaticFiles();
+      app.UseStaticFiles();
+      app.UseDefaultFiles();
       // app.UseMvc(routes =>
       // {
       //     routes.MapRoute(
