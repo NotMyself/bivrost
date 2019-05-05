@@ -55,21 +55,21 @@ namespace Bivrost.Web
         });
       }
 
-      app.UseStaticFiles();
-      app.UseSpaStaticFiles(new StaticFileOptions {
-
+      app.UseSpaStaticFiles();
+      app.UseSpa(spa => {
+        spa.Options.DefaultPage = "/index.html";
       });
-      app.UseDefaultFiles();
-      // app.UseMvc(routes =>
-      // {
-      //     routes.MapRoute(
-      //         name: "default",
-      //         template: "{controller=Home}/{action=Index}/{id?}");
 
-      //     routes.MapSpaFallbackRoute(
-      //         name: "spa-fallback",
-      //         defaults: new { controller = "Home", action = "Index" });
-      // });
+      app.UseMvc(routes =>
+      {
+          routes.MapRoute(
+              name: "default",
+              template: "{controller=Home}/{action=Index}/{id?}");
+
+          routes.MapSpaFallbackRoute(
+              name: "spa-fallback",
+              defaults: new { controller = "Home", action = "Index" });
+      });
     }
   }
 }
