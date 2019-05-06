@@ -18,7 +18,7 @@ const actions = {
 
 const mutations = {
   addMessage(state, message) {
-    state.items.push(message);
+    state.chatMessages.push(message);
   }
 }
 
