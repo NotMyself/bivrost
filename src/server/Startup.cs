@@ -88,11 +88,11 @@ namespace Bivrost.Web
               spa.Options.DefaultPage = "/index.html";
             });
 
-            // app.UseMvc(routes => {
-            //   routes.MapSpaFallbackRoute(
-            //       name: "spa-fallback",
-            //       defaults: new { controller = "Fallback", action = "Index" });
-            // });
+            app.UseMvc(routes => {
+              routes.MapSpaFallbackRoute(
+                  name: "spa-fallback",
+                  defaults: new { controller = "Fallback", action = "Index" });
+            });
           });
 
       }
