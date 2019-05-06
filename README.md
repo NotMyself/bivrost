@@ -10,6 +10,8 @@ Bivrost is a asp.net core application that offers several overlay endpoints, hos
 
 ## Getting Started
 
+Put your left foot in.
+
 ### Running on Zeit Now
 
 If you want to start using Bivrost as is with no customizations, this can easily be done with Zeit's Now platform.

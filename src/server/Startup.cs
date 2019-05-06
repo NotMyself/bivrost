@@ -37,9 +37,10 @@ namespace Bivrost.Web
 
       services.AddMvc();
       services.AddSignalR(config =>
-            {
-                config.EnableDetailedErrors = true;
-            });
+      {
+          config.EnableDetailedErrors =
+            Configuration.GetValue("Signalr_Errors", false);
+      });
       // In production, the Vue files will be served
       //  from this directory
       services.AddSpaStaticFiles(configuration =>
@@ -50,38 +51,51 @@ namespace Bivrost.Web
 
     public void Configure(IApplicationBuilder app, IHostingEnvironment env)
     {
-      if (env.IsDevelopment())
+      //set up serverside development handler
+      if(env.IsDevelopment())
       {
         app.UseDeveloperExceptionPage();
+      }
+
+      //set up signalr routing
+      app.UseSignalR(routes =>
+      {
+          routes.MapHub<ClientHub>("/client-hub");
+      });
+
+      //set up default mvc routing
+      app.UseMvc(routes =>
+      {
+        routes.MapRoute("default", "api/{controller=Home}/{action=Index}/{id?}");
+      });
+
+      //setup spa routing for both dev and prod
+      if (env.IsDevelopment())
+      {
         app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions {
             HotModuleReplacement = true,
             ProjectPath = Path.Combine(env.ContentRootPath, Configuration["ClientProjectPath"]),
             ConfigFile = Path.Combine(env.ContentRootPath, Configuration["ClientProjectConfigPath"])
         });
       }
-
-      if(env.IsProduction()) {
-        app.UseSpaStaticFiles();
-        app.UseSpa(spa => {
-          spa.Options.DefaultPage = "/index.html";
-        });
-      }
-
-      app.UseSignalR(routes =>
-            {
-                routes.MapHub<ClientHub>("/client-hub");
+      else
+      {
+        app.UseWhen(context => !context.Request.Path.Value.StartsWith("/api")
+          && !context.Request.Path.Value.StartsWith("/client-hub"),
+          builder => {
+            app.UseSpaStaticFiles();
+            app.UseSpa(spa => {
+              spa.Options.DefaultPage = "/index.html";
             });
 
-      app.UseMvc(routes =>
-      {
-          routes.MapRoute(
-              name: "default",
-              template: "{controller=Home}/{action=Index}/{id?}");
+            app.UseMvc(routes => {
+              routes.MapSpaFallbackRoute(
+                  name: "spa-fallback",
+                  defaults: new { controller = "Fallback", action = "Index" });
+            });
+          });
 
-          routes.MapSpaFallbackRoute(
-              name: "spa-fallback",
-              defaults: new { controller = "Home", action = "Index" });
-      });
+      }
     }
   }
 }
