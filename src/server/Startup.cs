@@ -37,9 +37,9 @@ namespace Bivrost.Web
 
       services.AddMvc();
       services.AddSignalR(config =>
-            {
-                config.EnableDetailedErrors = true;
-            });
+      {
+          config.EnableDetailedErrors = true;
+      });
       // In production, the Vue files will be served
       //  from this directory
       services.AddSpaStaticFiles(configuration =>
