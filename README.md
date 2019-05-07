@@ -10,7 +10,28 @@ Bivrost is a asp.net core application that offers several overlay endpoints, hos
 
 ## Getting Started
 
-Put your left foot in.
+### Running Locally
+
+As long as you have the development dependencies installed, the application can be run on your bare metal machine.
+
+1. Clone the repository: `git clone https://github.com/NotMyself/bivrost.git`.
+1. Change directory into the cloned repository `cd bivrost`.
+1. Run script `scripts/local-init`.
+1. Run the command `dotnet user-secrets set BIVROST_TWITCH_BOT_USER_NAME {bot-user-name}`.
+1. Run the command `dotnet user-secrets set BIVROST_TWITCH_BOT_ACCESS_TOKEN={bot-access-token}`.
+1. Run the command `dotnet user-secrets set BIVROST_TWITCH_BOT_CHANNEL={twitch-channel}`.
+  - **Note:** You must supply valid values for the **BIVROST_** environment variables, see [this](#obtaining-twitch-access-tokens) for instructions on how to obtain these values.
+1. Run script `scripts/local-start`.
+
+### Running in Docker
+
+The application can easily be executed locally with no development dependencies using [Docker](https://www.docker.com/).
+
+1. Clone the repository: `git clone https://github.com/NotMyself/bivrost.git`.
+2. Change directory into the cloned repository `cd bivrost`.
+3. Run script `scripts/image-create`.
+4. Run script `BIVROST_TWITCH_BOT_USER_NAME={bot-user-name} BIVROST_TWITCH_BOT_ACCESS_TOKEN={bot-access-token} BIVROST_TWITCH_BOT_CHANNEL={twitch-channel} scripts/image-start`.
+   - **Note:** You must supply valid values for the **BIVROST_** environment variables, see [this](#obtaining-twitch-access-tokens) for instructions on how to obtain these values.
 
 ### Running on Zeit Now
 
@@ -28,29 +49,6 @@ If you want to start using Bivrost as is with no customizations, this can easily
 7. Connect the [Now for GitHub](https://zeit.co/github) application to your account.
 
 Once complete, Now will deploy an instance of Bivrost on every clean commit to your master branch. By default, it will also do a test deployment for app pull requests submitted.
-
-### Running in Docker
-
-The application can easily be executed locally with no development dependencies using [Docker](https://www.docker.com/).
-
-1. Clone the repository: `git clone https://github.com/NotMyself/bivrost.git`.
-2. Change directory into the cloned repository `cd bivrost`.
-3. Run script `scripts/image-create`.
-4. Run script `BIVROST_TWITCH_BOT_USER_NAME={bot-user-name} BIVROST_TWITCH_BOT_ACCESS_TOKEN={bot-access-token} BIVROST_TWITCH_BOT_CHANNEL={twitch-channel} scripts/image-start`.
-   - **Note:** You must supply valid values for the **BIVROST_** environment variables, see [this](#obtaining-twitch-access-tokens) for instructions on how to obtain these values.
-
-### Running Locally
-
-As long as you have the development dependencies installed, the application can be run on your bare metal machine.
-
-1. Clone the repository: `git clone https://github.com/NotMyself/bivrost.git`.
-1. Change directory into the cloned repository `cd bivrost`.
-1. Run script `scripts/local-init`.
-1. Run the command `dotnet user-secrets set BIVROST_TWITCH_BOT_USER_NAME {bot-user-name}`.
-1. Run the command `dotnet user-secrets set BIVROST_TWITCH_BOT_ACCESS_TOKEN={bot-access-token}`.
-1. Run the command `dotnet user-secrets set BIVROST_TWITCH_BOT_CHANNEL={twitch-channel}`.
-  - **Note:** You must supply valid values for the **BIVROST_** environment variables, see [this](#obtaining-twitch-access-tokens) for instructions on how to obtain these values.
-1. Run script `scripts/local-start`.
 
 ### Obtaining Twitch Access Tokens
 
@@ -88,6 +86,11 @@ You will need to generate an OAuth authorization token with several specific sco
 When the bot is successfully configured, it will announce it's arrival in chat like this:
 
 ![Bivrost On Join Message](/docs/images/bivrost-on-join-messsage.png?raw=true "Bivrost On Join Message")
+
+#### Bivrost On Message Overlay
+
+![Bivrost On Message Overlay](/docs/images/bivrost-on-message-overlay.png?raw=true "Bivrost On Message Overlay")
+
 
 ### External Dependencies
 
