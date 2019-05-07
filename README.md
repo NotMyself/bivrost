@@ -89,7 +89,7 @@ When the bot is successfully configured, it will announce it's arrival in chat l
 
 #### Bivrost On Message Overlay
 
-![Bivrost On Message Overlay](/docs/images/bivrost-on-message-overlay.png?raw=true "Bivrost On Message Overlay")
+![Bivrost On Message Overlay](/docs/images/bivrost-on-message-overlay.gif?raw=true "Bivrost On Message Overlay")
 
 
 ### External Dependencies
