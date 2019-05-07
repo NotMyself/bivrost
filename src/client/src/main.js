@@ -11,6 +11,9 @@ Vue.config.productionTip = false
 
 Vue.use(VueSignalR, '/client-hub');
 
+import 'bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 new Vue({
   router,
   store,

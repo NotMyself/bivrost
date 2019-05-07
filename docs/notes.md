@@ -3,7 +3,7 @@
 ## Inspiration
 
 - [Mike Jolly's IO](https://github.com/MichaelJolley/io)
-- [Vuex Sample App](https://github.com/vuejs/vuex)
+- [Vuex Sample App](https://github.com/vuejs/vuex/tree/dev/examples/shopping-cart)
 - [Securing Vue](https://github.com/NotMyself/securing-vue)
 
 ## Library Documentation
