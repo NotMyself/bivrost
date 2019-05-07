@@ -5,9 +5,7 @@ const state = {
 }
 
 const getters = {
-  getMessages(state) {
-    return state.chatMessages;
-  }
+
 }
 
 const actions = {
@@ -18,7 +16,9 @@ const actions = {
 
 const mutations = {
   addMessage(state, message) {
-    state.chatMessages.push(message);
+    // eslint-disable-next-line no-console
+    console.dir(message);
+    state.chatMessages = [...state.chatMessages, message];
   }
 }
 

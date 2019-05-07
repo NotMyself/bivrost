@@ -1,13 +1,17 @@
 <template>
   <div id="app">
+    <app-nav />
     <router-view />
   </div>
 </template>
 
 <script>
+import AppNav from '@/components/AppNav.vue';
+
 export default {
   name: 'app',
   components: {
+    AppNav
   },
   sockets: {
     receiveChatMessage(message) {
