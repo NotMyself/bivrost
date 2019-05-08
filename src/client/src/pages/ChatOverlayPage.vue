@@ -6,7 +6,7 @@
         <div class="chatBox" v-for="message in chatMessages" v-bind:key="message.id">
           <div class="chatMessage">
             <div class="profile">
-              <img class="profileImg"/>
+              <img class="profileImg" :src="message.user.profileImageUrl" />
             </div>
             <div class="body">
               <div class="bubble">
@@ -17,7 +17,7 @@
                   {{message.message}}
                 </div>
                 <div class="name">
-                  {{message.displayName}}
+                  {{message.user.displayName}}
                 </div>
               </div>
             </div>
