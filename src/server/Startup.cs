@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using Bivrost.Web.Signalr;
+using Bivrost.Web.Twitch;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -23,7 +25,8 @@ namespace Bivrost.Web
     }
     public void ConfigureServices(IServiceCollection services)
     {
-
+      services.AddMemoryCache();
+      services.AddSingleton<UserCache>();
 
       services.AddLogging(builder =>
       {
@@ -34,6 +37,8 @@ namespace Bivrost.Web
 
       services.AddTwitchClient(Configuration);
       services.AddTwitchBot(Configuration);
+
+      services.AddMediatR(typeof(Startup).Assembly);
 
       services.AddMvc();
       services.AddSignalR(config =>

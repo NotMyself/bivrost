@@ -1,5 +1,6 @@
 using Bivrost.Web.Twitch;
 using Microsoft.Extensions.Configuration;
+using TwitchLib.Api;
 using TwitchLib.Client;
 using TwitchLib.Client.Models;
 
@@ -14,7 +15,7 @@ namespace Microsoft.Extensions.DependencyInjection
         new ConnectionCredentials(Configuration["BIVROST_TWITCH_BOT_USER_NAME"],
                                   Configuration["BIVROST_TWITCH_BOT_ACCESS_TOKEN"]));
 
-      services.AddSingleton<TwitchClient>((c) =>
+      services.AddSingleton<TwitchClient>(c =>
       {
         var client = new TwitchClient();
 
@@ -22,6 +23,15 @@ namespace Microsoft.Extensions.DependencyInjection
                           Configuration["BIVROST_TWITCH_BOT_CHANNEL"]);
 
         return client;
+      });
+
+      services.AddSingleton<TwitchAPI>(c => {
+        var api = new TwitchAPI();
+
+        api.Settings.ClientId = Configuration["BIVROST_TWITCH_CLIENT_ID"];
+        api.Settings.AccessToken = Configuration["BIVROST_TWITCH_CLIENT_SECRET"];
+
+        return api;
       });
     }
 

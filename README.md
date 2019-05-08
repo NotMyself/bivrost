@@ -78,6 +78,8 @@ You will need to generate an OAuth authorization token with several specific sco
 | BIVROST_TWITCH_BOT_USER_NAME | Twitch Account Username for Bot |
 | BIVROST_TWITCH_BOT_ACCESS_TOKEN | OAuth Access Token for Twitch Account |
 | BIVROST_TWITCH_BOT_CHANNEL | Twitch Chat Channel for Bot to join and listen. |
+| BIVROST_TWITCH_CLIENT_ID |  |
+| BIVROST_TWITCH_CLIENT_SECRET|  |
 
 ### Screen Shots
 

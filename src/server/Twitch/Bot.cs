@@ -2,6 +2,8 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Bivrost.Web.Signalr;
+using Bivrost.Web.Twitch.Notifications;
+using MediatR;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -15,11 +17,13 @@ namespace Bivrost.Web.Twitch
   {
     public ILogger<Bot> Logger { get; }
     private TwitchClient Client { get; }
+    public IMediator Mediator { get; }
     public IHubContext<ClientHub> HubContext { get; }
 
-    public Bot(TwitchClient client, IHubContext<ClientHub> hubContext, ILogger<Bot> logger)
+    public Bot(TwitchClient client, IMediator mediator, IHubContext<ClientHub> hubContext, ILogger<Bot> logger)
     {
       Client = client ?? throw new System.ArgumentNullException(nameof(client));
+      Mediator = mediator ?? throw new System.ArgumentNullException(nameof(mediator));;
       HubContext = hubContext ?? throw new System.ArgumentNullException(nameof(hubContext));
       Logger = logger ?? throw new System.ArgumentNullException(nameof(logger));
     }
@@ -36,8 +40,10 @@ namespace Bivrost.Web.Twitch
         Client.OnUserJoined += OnUserJoined;
         Client.OnWhisperReceived += OnWhisperReceived;
 
-        Logger.LogInformation("Connecting to Twitch as {User}",
-                              Client.ConnectionCredentials.TwitchUsername);
+        Logger.LogInformation("{@Event}",
+          new { EventArgs="Bot Starting",
+                Bot=Client.ConnectionCredentials.TwitchUsername });
+
         Client.Connect();
       });
     }
@@ -45,59 +51,68 @@ namespace Bivrost.Web.Twitch
     public Task StopAsync(CancellationToken cancellationToken)
     {
       return Task.Run(() => {
-        Logger.LogInformation("Disconnecting from Twitch as {User}",
-                            Client.ConnectionCredentials.TwitchUsername);
+        Logger.LogInformation("{@Event}",
+          new { EventArgs="Bot Stopping",
+                Bot=Client.ConnectionCredentials.TwitchUsername });
+
         Client.Disconnect();
       });
     }
 
     private void OnConnected(object sender, OnConnectedArgs e)
     {
-      Logger.LogInformation("Connected to Twitch as {User}",
-                            Client.ConnectionCredentials.TwitchUsername);
+      Logger.LogInformation("{@Event}",
+      new { Event="Bot Connected",
+            Bot=Client.ConnectionCredentials.TwitchUsername });
     }
 
     private void OnDisconnected(object sender, OnDisconnectedEventArgs e)
     {
-      Logger.LogWarning("Disconnected from Twitch as {User}",
-                          Client.ConnectionCredentials.TwitchUsername);
+      Logger.LogWarning("{@Event}",
+        new { Event="Bot Disconnected",
+              Bot=Client.ConnectionCredentials.TwitchUsername });
     }
 
     private void OnError(object sender, OnErrorEventArgs error)
     {
-      Logger.LogError(error.Exception, error.Exception.Message);
+      Logger.LogError(error.Exception, "{@Event}",
+        new { Event="Error",
+              Type=error.Exception.GetType(),
+              Message=error.Exception.Message });
     }
 
     private void OnJoinedChannel(object sender, OnJoinedChannelArgs e)
     {
-      Logger.LogInformation("Joined Channel {@Event}", new { e.BotUsername, e.Channel });
+      Logger.LogInformation("{@Event}",
+        new { Event="Bot Joined Channel", e.BotUsername, e.Channel });
 
       Client.SendMessage(e.Channel, "auth0bHype Bivrost has joined. auth0bHype");
     }
 
     private void OnUserJoined(object sender, OnUserJoinedArgs e)
     {
-      Logger.LogInformation("User Joined Channel {@Event}", new { e.Username, e.Channel });
+      Logger.LogInformation("{@Event}",
+        new { EventArgs="User Joined Channel", e.Username, e.Channel });
     }
 
     private void OnMessageReceived(object sender, OnMessageReceivedArgs e)
     {
-      Logger.LogInformation("Message {@Event}",
-        new { e.ChatMessage.DisplayName, e.ChatMessage.Message });
+      Logger.LogInformation("{@Event}",
+        new { EventArgs="Chat Message", e.ChatMessage.DisplayName, e.ChatMessage.Message });
 
-      HubContext.Clients.All.SendAsync("ReceiveChatMessage", e.ChatMessage);
+        Mediator.Publish(new RecievedChatMessageNotification(e.ChatMessage));
     }
 
     private void OnWhisperReceived(object sender, OnWhisperReceivedArgs e)
     {
-      Logger.LogInformation("Whisper {@Event}",
-        new { e.WhisperMessage.DisplayName, e.WhisperMessage.Message });
+      Logger.LogInformation("{@Event}",
+        new { EventArgs="Whisper Message", e.WhisperMessage.DisplayName, e.WhisperMessage.Message });
     }
 
     private void OnRaidNotification(object sender, OnRaidNotificationArgs e)
     {
-      Logger.LogInformation("Raid {@Event}",
-        new { e.RaidNotificaiton.DisplayName, e.RaidNotificaiton.MsgParamViewerCount });
+      Logger.LogInformation("{@Event}",
+        new { Event="Raid", e.RaidNotificaiton.DisplayName, e.RaidNotificaiton.MsgParamViewerCount });
     }
   }
 }
