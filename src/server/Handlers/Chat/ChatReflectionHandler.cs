@@ -1,4 +1,4 @@
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Bivrost.Web.Signalr;
 using Bivrost.Web.Twitch;
@@ -7,16 +7,16 @@ using MediatR;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 
-namespace Bivrost.Web.Models.Chat
+namespace Bivrost.Web.Handlers.Chat
 {
-  public class ChatReflectionNotificationHandler : INotificationHandler<RecievedChatMessageNotification>
+  public class ChatReflectionHandler : INotificationHandler<RecievedChatMessageNotification>
   {
     public UserCache Cache { get; }
     public IHubContext<ClientHub> HubContext { get; }
-    public ILogger<ChatReflectionNotificationHandler> Logger { get; }
-    public ChatReflectionNotificationHandler(UserCache cache,
+    public ILogger<ChatReflectionHandler> Logger { get; }
+    public ChatReflectionHandler(UserCache cache,
                                             IHubContext<ClientHub> hubContext,
-                                            ILogger<ChatReflectionNotificationHandler> logger)
+                                            ILogger<ChatReflectionHandler> logger)
     {
       Cache = cache ?? throw new System.ArgumentNullException(nameof(cache));
       HubContext = hubContext ?? throw new System.ArgumentNullException(nameof(hubContext));
@@ -26,6 +26,10 @@ namespace Bivrost.Web.Models.Chat
 
     public async Task Handle(RecievedChatMessageNotification notification, CancellationToken cancellationToken)
     {
+      // do not reflect chat commands
+      if(notification.Message.Message.StartsWith("!"))
+        return;
+
       var user = await Cache.GetUserAsync(notification.Message.UserId);
       await HubContext.Clients.All.SendAsync("ReceiveChatMessage",
         new { User= new {
