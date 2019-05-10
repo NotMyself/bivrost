@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <b-container fluid>
     <h3 class="text-center">HomePage</h3>
     <hr/>
-  </div>
+  </b-container>
 </template>
 
 <script>
