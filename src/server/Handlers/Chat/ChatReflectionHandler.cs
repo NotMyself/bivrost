@@ -27,26 +27,29 @@ namespace Bivrost.Web.Handlers.Chat
     public async Task Handle(RecievedChatMessageNotification notification, CancellationToken cancellationToken)
     {
       // do not reflect chat commands
-      if(notification.Message.Message.StartsWith("!"))
+      if (notification.Message.Message.StartsWith("!"))
         return;
 
       var user = await Cache.GetUserAsync(notification.Message.UserId);
       await HubContext.Clients.All.SendAsync("ReceiveChatMessage",
-        new { User= new {
-                      user.Id,
-                      user.DisplayName,
-                      user.ProfileImageUrl,
-                      user.Type,
-                      notification.Message.IsBroadcaster,
-                      notification.Message.IsModerator,
-                      notification.Message.IsSubscriber,
-                      notification.Message.Badges,
-                      notification.Message.Bits
-                    },
-              notification.Message.Id,
-              notification.Message.Message,
-              notification.Message.RoomId
-                });
+        new
+        {
+          User = new
+          {
+            user.Id,
+            user.DisplayName,
+            user.ProfileImageUrl,
+            notification.Message.IsBroadcaster,
+            notification.Message.IsModerator,
+            notification.Message.IsSubscriber,
+            notification.Message.Badges,
+            notification.Message.Bits
+          },
+          notification.Message.Id,
+          notification.Message.Message,
+          notification.Message.Bits,
+          notification.Message.RoomId
+        });
     }
   }
 }
