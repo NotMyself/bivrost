@@ -1,17 +1,18 @@
 <template>
   <div id="app">
-    <app-nav />
-    <router-view />
+    <component :is="layout">
+      <router-view />
+    </component>
   </div>
 </template>
 
 <script>
-import AppNav from '@/components/AppNav.vue';
-
 export default {
   name: 'app',
-  components: {
-    AppNav
+  computed: {
+    layout() {
+      return (this.$route.meta.layout || 'default') + '-layout';
+    }
   },
   sockets: {
     receiveChatMessage(message) {
@@ -22,12 +23,7 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+#app, body, html, .container-fluid {
+  height: 100%;
 }
 </style>
