@@ -10,6 +10,7 @@
   "dependencies": {
     "@aspnet/signalr": "^1.1.4",
     "bootstrap": "^4.3.1",
+    "bootstrap-vue": "^2.0.0-rc.19",
     "core-js": "^2.6.5",
     "jquery": "^3.4.1",
     "popper.js": "^1.15.0",

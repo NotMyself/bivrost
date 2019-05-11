@@ -16,8 +16,6 @@ const actions = {
 
 const mutations = {
   addMessage(state, message) {
-    // eslint-disable-next-line no-console
-    console.dir(message);
     state.chatMessages = [...state.chatMessages, message];
   }
 }
