@@ -1,12 +1,7 @@
 <template>
-<b-row class="chat-display">
-  <b-col cols="9"/>
-  <b-col cols="3">
-    <div class="chat-wrapper">
+
       <ChatList :chatMessages="displayMessages" />
-    </div>
-  </b-col>
-</b-row>
+
 </template>
 
 <script>
@@ -33,7 +28,7 @@ export default {
 </script>
 
 <style scoped>
-.chat-display, .chat-wrapper {
+.chat-wrapper {
   height: 100%;
 }
 </style>

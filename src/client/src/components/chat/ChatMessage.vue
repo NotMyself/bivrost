@@ -1,31 +1,38 @@
 <template>
 <b-card no-body :class="{
                   'chat-message': true,
-                  'overflow-hidden': true,
                   'broadcaster': chatMessage.user.isBroadcaster,
-                  'subscriber':chatMessage.user.isSubscriber,
+                  'subscriber': chatMessage.user.isSubscriber,
                   'moderator': chatMessage.user.isModerator
                 }"
                 :style="{opacity}">
-    <b-row no-gutters>
-      <b-col md="12">
+
         <b-card-body>
           <b-card-img :src="chatMessage.user.profileImageUrl" />
-          <b-card-title class="name">{{chatMessage.user.displayName}}</b-card-title>
-          <b-card-sub-title v-if="chatMessage.user.isModerator">Moderator</b-card-sub-title>
+          <img class="watermark" :src="auth0" v-if="chatMessage.user.isBroadcaster" />
+          <img class="watermark" :src="shield"
+                v-if="chatMessage.user.isModerator
+                  && !chatMessage.user.isBroadcaster" />
+          <img class="watermark" :src="sword"
+                v-if="chatMessage.user.isSubscriber
+                  && !chatMessage.user.isBroadcaster
+                  && !chatMessage.user.isModerator" />
           <b-card-text>
             {{chatMessage.message}}
           </b-card-text>
+        <b-card-title>{{chatMessage.user.displayName}}</b-card-title>
         </b-card-body>
         <b-card-footer v-if="chatMessage.bits">
           Cheer for {{chatMessage.bits}} bits
         </b-card-footer>
-      </b-col>
-    </b-row>
+
   </b-card>
 </template>
 
 <script>
+import shield from "@/assets/shield.svg"
+import sword from "@/assets/sword.svg"
+import auth0 from "@/assets/auth0.svg"
 
 export default {
   name: 'ChatMessage',
@@ -36,6 +43,9 @@ export default {
   },
   data: () => {
     return {
+      shield,
+      sword,
+      auth0,
       opacity: () => {
         return 100;
       }
@@ -45,21 +55,91 @@ export default {
 </script>
 
 <style scoped>
-.chat-message {
-  background: rgba(66, 52, 78, 1);
-  margin-top: 10px;
-  margin-bottom: 10px;
+.card {
+  border: solid 3px;
+  border-radius: 20px 0px;
+  border-color:  #EB5424;
+  background-color: #F5F7F9;
 }
 
-.name {
-
+.moderator {
+  border-color: #16214D;
+  background-color: #44C7F4;
 }
 
-img {
+.subscriber {
+  border-color: #16214D;
+  background-color: #E3E5E7;
+}
+
+.broadcaster {
+  border-color: #44C7F4;
+  background-color: #D0D2D3;
+}
+
+.card-img {
     width: 50px;
+    position: absolute;
+    left: -25px;
+    bottom: -20px;
     border-radius: 25px;
-    background-color: #3c3c3c;
-    border-radius: 25px;
-    border: solid 3px rgba(66, 52, 78, 1);
+    border: solid 3px;
+    border-color: #EB5424;
+}
+
+.moderator .card-img {
+  border-color: #16214D;
+}
+
+.subscriber .card-img {
+  border-color: #16214D;
+}
+
+.broadcaster .card-img {
+  border-color: #44C7F4;
+}
+
+.card-body {
+  padding-top: 10px;
+}
+
+.chat-message {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.card-text {
+  margin-top: 5px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+
+.card-title {
+  opacity: .54;
+  font-weight: bold;
+  margin:0;
+  position: absolute;
+  bottom: 3px;
+  right: 15px;
+}
+
+.watermark {
+  width: 25px;
+  opacity: .25;
+  position: absolute;
+  right: 15px;
+}
+
+.broadcaster .watermark {
+  opacity: 1;
+  width: 40px;
+  background-color: #F5F7F9;
+  padding: 3px;
+  right: -15px;
+  top: -15px;
+  border-radius: 10px;
+  border: solid 3px;
+  border-color: #44C7F4;
 }
 </style>

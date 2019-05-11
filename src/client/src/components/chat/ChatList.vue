@@ -25,11 +25,9 @@ export default {
 
 <style scoped>
 .chat-box {
-  height: 100%;
-  overflow: hidden;
-}
-
- .card-columns {
-  column-count: 1;
+  position: absolute;
+  right: 15px;
+  width: 300px;
+  bottom: 0;
 }
 </style>
