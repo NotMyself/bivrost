@@ -46,9 +46,7 @@ export default {
       shield,
       sword,
       auth0,
-      opacity: () => {
-        return 100;
-      }
+      opacity: 1
     }
   }
 }
