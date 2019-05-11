@@ -16,7 +16,7 @@
               && !chatMessage.user.isBroadcaster
               && !chatMessage.user.isModerator" />
       <b-card-text>
-        <EmoteMessage :emotes="chatMessage.emotes"
+        <DisplayText :emotes="chatMessage.emotes"
                       :message="chatMessage.message" />
       </b-card-text>
     <b-card-title>{{chatMessage.user.displayName}}</b-card-title>
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import EmoteMessage from "@/components/chat/EmoteMessage.vue"
+import DisplayText from "@/components/chat/DisplayText.vue"
 import shield from "@/assets/shield.svg"
 import sword from "@/assets/sword.svg"
 import auth0 from "@/assets/auth0.svg"
@@ -41,7 +41,7 @@ export default {
     count: Number
   },
   components:{
-    EmoteMessage
+    DisplayText
   },
   data: () => {
     return {

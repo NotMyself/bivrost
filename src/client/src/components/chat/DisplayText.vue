@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'EmoteMessage',
+  name: 'DisplayText',
   props: {
     emotes: Array,
     message: String
