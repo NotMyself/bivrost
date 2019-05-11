@@ -1,35 +1,34 @@
 <template>
-<b-card no-body :class="{
+  <b-card no-body :class="{
                   'chat-message': true,
                   'broadcaster': chatMessage.user.isBroadcaster,
                   'subscriber': chatMessage.user.isSubscriber,
                   'moderator': chatMessage.user.isModerator
-                }"
-                :style="{opacity}">
-
-        <b-card-body>
-          <b-card-img :src="chatMessage.user.profileImageUrl" />
-          <img class="watermark" :src="auth0" v-if="chatMessage.user.isBroadcaster" />
-          <img class="watermark" :src="shield"
-                v-if="chatMessage.user.isModerator
-                  && !chatMessage.user.isBroadcaster" />
-          <img class="watermark" :src="sword"
-                v-if="chatMessage.user.isSubscriber
-                  && !chatMessage.user.isBroadcaster
-                  && !chatMessage.user.isModerator" />
-          <b-card-text>
-            {{chatMessage.message}}
-          </b-card-text>
-        <b-card-title>{{chatMessage.user.displayName}}</b-card-title>
-        </b-card-body>
-        <b-card-footer v-if="chatMessage.bits">
-          Cheer for {{chatMessage.bits}} bits
-        </b-card-footer>
-
+                }">
+    <b-card-body>
+      <b-card-img :src="chatMessage.user.profileImageUrl" />
+      <img class="watermark" :src="auth0" v-if="chatMessage.user.isBroadcaster" />
+      <img class="watermark" :src="shield"
+            v-if="chatMessage.user.isModerator
+              && !chatMessage.user.isBroadcaster" />
+      <img class="watermark" :src="sword"
+            v-if="chatMessage.user.isSubscriber
+              && !chatMessage.user.isBroadcaster
+              && !chatMessage.user.isModerator" />
+      <b-card-text>
+        <EmoteMessage :emotes="chatMessage.emotes"
+                      :message="chatMessage.message" />
+      </b-card-text>
+    <b-card-title>{{chatMessage.user.displayName}}</b-card-title>
+    </b-card-body>
+    <b-card-footer v-if="chatMessage.bits">
+      Cheer for {{chatMessage.bits}} bits
+    </b-card-footer>
   </b-card>
 </template>
 
 <script>
+import EmoteMessage from "@/components/chat/EmoteMessage.vue"
 import shield from "@/assets/shield.svg"
 import sword from "@/assets/sword.svg"
 import auth0 from "@/assets/auth0.svg"
@@ -41,12 +40,14 @@ export default {
     index: Number,
     count: Number
   },
+  components:{
+    EmoteMessage
+  },
   data: () => {
     return {
       shield,
       sword,
-      auth0,
-      opacity: 1
+      auth0
     }
   }
 }

@@ -47,6 +47,7 @@ namespace Bivrost.Web.Handlers.Chat
           },
           notification.Message.Id,
           notification.Message.Message,
+          notification.Message.EmoteSet.Emotes,
           notification.Message.Bits,
           notification.Message.RoomId
         });
