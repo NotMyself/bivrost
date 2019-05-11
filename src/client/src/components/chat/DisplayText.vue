@@ -3,7 +3,7 @@
     <template v-for="(word, i) in words">
       <img :src="lookup[word]" v-bind:key="i"
             v-if="lookup[word]" />
-      <template v-else>{{word}}</template>
+      <template v-else> {{word}}</template>
     </template>
   </div>
 </template>
