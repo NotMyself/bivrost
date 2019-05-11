@@ -27,7 +27,19 @@ export default {
 .chat-box {
   position: absolute;
   right: 15px;
-  width: 300px;
+  width: 340px;
   bottom: 0;
+  padding-right: 15px;
+  padding-left: 25px;
+}
+
+.chat-box:after {
+  position: absolute;
+  content: "";
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(0deg, transparent, transparent 450px, rgba(173,255,47,1) 920px);
 }
 </style>

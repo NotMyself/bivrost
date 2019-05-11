@@ -1,7 +1,5 @@
 <template>
-
-      <ChatList :chatMessages="displayMessages" />
-
+  <ChatList :chatMessages="displayMessages" />
 </template>
 
 <script>
