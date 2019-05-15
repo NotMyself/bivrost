@@ -77,6 +77,8 @@ namespace Bivrost.Web
       //setup spa routing for both dev and prod
       if (env.IsDevelopment())
       {
+        //force client side deep links to render the spa
+        app.UseStatusCodePagesWithReExecute("/");
         app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions {
             HotModuleReplacement = true,
             ProjectPath = Path.Combine(env.ContentRootPath, Configuration["ClientProjectPath"]),
