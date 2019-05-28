@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
+
 using TwitchLib.Api;
 using TwitchLib.Api.Helix.Models.Users;
 

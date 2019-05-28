@@ -1,11 +1,15 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.Logging;
+
+using MediatR;
+
 using Bivrost.Web.Signalr;
 using Bivrost.Web.Twitch;
 using Bivrost.Web.Twitch.Notifications;
-using MediatR;
-using Microsoft.AspNetCore.SignalR;
-using Microsoft.Extensions.Logging;
+
 
 namespace Bivrost.Web.Handlers.Chat
 {

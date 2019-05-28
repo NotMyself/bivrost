@@ -2,10 +2,13 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using Bivrost.Web.Twitch.Notifications;
-using MediatR;
+
 using Microsoft.Extensions.Logging;
+
+using MediatR;
 using TwitchLib.Client;
+
+using Bivrost.Web.Twitch.Notifications;
 
 namespace Bivrost.Web.Handlers.Chat
 {

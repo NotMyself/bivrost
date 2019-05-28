@@ -1,8 +1,6 @@
 ﻿using System;
 using System.IO;
-using Bivrost.Web.Signalr;
-using Bivrost.Web.Twitch;
-using MediatR;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,7 +9,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
+
 using Serilog;
+using MediatR;
+
+using Bivrost.Web.Signalr;
+using Bivrost.Web.Twitch;
 
 namespace Bivrost.Web
 {
@@ -81,8 +84,10 @@ namespace Bivrost.Web
         app.UseStatusCodePagesWithReExecute("/");
         app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions {
             HotModuleReplacement = true,
-            ProjectPath = Path.Combine(env.ContentRootPath, Configuration["ClientProjectPath"]),
-            ConfigFile = Path.Combine(env.ContentRootPath, Configuration["ClientProjectConfigPath"])
+            ProjectPath = Path.Combine(env.ContentRootPath,
+                              Configuration["ClientProjectPath"]),
+            ConfigFile = Path.Combine(env.ContentRootPath,
+                              Configuration["ClientProjectConfigPath"])
         });
       }
       else

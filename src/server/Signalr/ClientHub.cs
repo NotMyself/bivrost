@@ -1,5 +1,7 @@
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.SignalR;
+
 using TwitchLib.Client.Events;
 
 namespace Bivrost.Web.Signalr

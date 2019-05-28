@@ -1,8 +1,10 @@
-using Bivrost.Web.Twitch;
 using Microsoft.Extensions.Configuration;
+
 using TwitchLib.Api;
 using TwitchLib.Client;
 using TwitchLib.Client.Models;
+
+using Bivrost.Web.Twitch;
 
 namespace Microsoft.Extensions.DependencyInjection
 {

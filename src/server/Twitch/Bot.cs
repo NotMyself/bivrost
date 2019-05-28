@@ -1,15 +1,18 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Bivrost.Web.Signalr;
-using Bivrost.Web.Twitch.Notifications;
-using MediatR;
+
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+
+using MediatR;
 using TwitchLib.Client;
 using TwitchLib.Client.Events;
 using TwitchLib.Communication.Events;
+
+using Bivrost.Web.Signalr;
+using Bivrost.Web.Twitch.Notifications;
 
 namespace Bivrost.Web.Twitch
 {
