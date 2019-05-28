@@ -57,23 +57,20 @@ export default {
 .card {
   border: solid 3px;
   border-radius: 20px 0px;
-  border-color:  #EB5424;
+  border-color:  #44C7F4;
   background-color: #F5F7F9;
 }
 
 .moderator {
-  border-color: #16214D;
-  background-color: #44C7F4;
+  border-color: #5C666F;
 }
 
 .subscriber {
-  border-color: #16214D;
-  background-color: #E3E5E7;
+  border-color: #02B48F;
 }
 
 .broadcaster {
-  border-color: #44C7F4;
-  background-color: #D0D2D3;
+  border-color: #EB5423;
 }
 
 .card-img {
@@ -83,19 +80,19 @@ export default {
     bottom: -20px;
     border-radius: 25px;
     border: solid 3px;
-    border-color: #EB5424;
+    border-color: #44C7F4;
 }
 
 .moderator .card-img {
-  border-color: #16214D;
+  border-color: #5C666F;
 }
 
 .subscriber .card-img {
-  border-color: #16214D;
+  border-color: #02B48F;
 }
 
 .broadcaster .card-img {
-  border-color: #44C7F4;
+  border-color: #EB5423;
 }
 
 .card-body {
@@ -139,6 +136,6 @@ export default {
   top: -15px;
   border-radius: 10px;
   border: solid 3px;
-  border-color: #44C7F4;
+  border-color: #EB5423;
 }
 </style>

@@ -26,7 +26,5 @@ export default {
 </script>
 
 <style scoped>
-.chat-wrapper {
-  height: 100%;
-}
+
 </style>

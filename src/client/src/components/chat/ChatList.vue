@@ -40,6 +40,6 @@ export default {
   top: 0px;
   height: 100%;
   width: 100%;
-  background: linear-gradient(0deg, rgba(0,0,0,0), rgba(0,0,0,0) 650px, rgba(173,255,47,1) 920px);
+  background: linear-gradient(0deg, rgba(0,0,0,0), rgba(0,0,0,0) 550px, rgba(0,0,0,1) 850px);
 }
 </style>
