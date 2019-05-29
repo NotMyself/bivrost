@@ -25,12 +25,14 @@ export default {
 
 <style scoped>
 .chat-box {
-  position: absolute;
-  right: 15px;
   width: 340px;
-  bottom: 0;
+  height: 1080px;
+  display: table-cell;
+  vertical-align: bottom;
+  overflow: hidden;
   padding-right: 15px;
   padding-left: 25px;
+  padding-bottom: 70px
 }
 
 .chat-box:after {

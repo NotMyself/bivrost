@@ -120,6 +120,22 @@ export default {
   right: 15px;
 }
 
+.card-footer {
+  background-color: #F0CC00;
+  position: absolute;
+  font-size: 12px;
+  font-weight: bolder;
+  color: #5C666F;
+  top: 77px;
+  right: 25px;
+  padding-top: 0;
+  padding-bottom: 0px;
+}
+
+div.card-footer {
+  border-radius: 0px 0px 15px 15px;
+}
+
 .watermark {
   width: 25px;
   opacity: .25;
