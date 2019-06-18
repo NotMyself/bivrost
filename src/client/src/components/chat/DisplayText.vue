@@ -17,13 +17,10 @@ export default {
   },
   computed: {
     lookup() {
-        // eslint-disable-next-line no-empty-pattern
-        let a = {};
-        for (let i = 0; i < this.emotes.length; i++) {
-          const emote = this.emotes[i];
-          a[emote.name] = emote.imageUrl;
-        }
-        return a;
+        return this.emotes.reduce((lookup, emote) => {
+          lookup[emote.name] = emote.imageUrl;
+          return lookup;
+        }, {});
     },
     words() {
       return this.message.split(' ');

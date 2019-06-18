@@ -1,4 +1,4 @@
-using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,6 +13,7 @@ using TwitchLib.Communication.Events;
 
 using Bivrost.Web.Signalr;
 using Bivrost.Web.Twitch.Notifications;
+
 
 namespace Bivrost.Web.Twitch
 {
@@ -88,6 +89,10 @@ namespace Bivrost.Web.Twitch
     {
       Logger.LogInformation("{@Event}",
         new { Event="Bot Joined Channel", e.BotUsername, e.Channel });
+
+      //sometimes this event gets called before the Client is ready.
+      if(!Client.JoinedChannels.Any(c => e.Channel.Equals(c.Channel)))
+        Thread.Sleep(1000);
 
       Client.SendMessage(e.Channel, "auth0bHype Bivrost has joined. auth0bHype");
     }
