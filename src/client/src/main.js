@@ -9,6 +9,7 @@ import BootstrapVue from "bootstrap-vue";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
+import "animate.css/animate.min.css";
 
 Vue.component("default-layout", Default);
 Vue.component("green-screen-layout", GreenScreen);

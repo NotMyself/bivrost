@@ -13,7 +13,7 @@ export default {
   },
   data: () => {
     return {
-      maxDisplay: 20
+      maxDisplay: 5
     }
   },
   computed: mapState({

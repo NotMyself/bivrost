@@ -18,8 +18,8 @@ As long as you have the development dependencies installed, the application can 
 1. Change directory into the cloned repository `cd bivrost`.
 1. Run script `scripts/local-init`.
 1. Run the command `dotnet user-secrets set BIVROST_TWITCH_BOT_USER_NAME {bot-user-name}`.
-1. Run the command `dotnet user-secrets set BIVROST_TWITCH_BOT_ACCESS_TOKEN={bot-access-token}`.
-1. Run the command `dotnet user-secrets set BIVROST_TWITCH_BOT_CHANNEL={twitch-channel}`.
+1. Run the command `dotnet user-secrets set BIVROST_TWITCH_BOT_ACCESS_TOKEN {bot-access-token}`.
+1. Run the command `dotnet user-secrets set BIVROST_TWITCH_BOT_CHANNEL {twitch-channel}`.
   - **Note:** You must supply valid values for the **BIVROST_** environment variables, see [this](#obtaining-twitch-access-tokens) for instructions on how to obtain these values.
 1. Run script `scripts/local-start`.
 

@@ -36,9 +36,7 @@ import auth0 from "@/assets/auth0.svg"
 export default {
   name: 'ChatMessage',
   props: {
-    chatMessage: Object,
-    index: Number,
-    count: Number
+    chatMessage: Object
   },
   components:{
     DisplayText
