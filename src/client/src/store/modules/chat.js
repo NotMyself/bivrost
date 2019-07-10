@@ -10,12 +10,12 @@ const getters = {
 
 const actions = {
   addMessage({ commit }, message) {
-    commit('addMessage', message);
+    commit('ADD_MESSAGE', message);
   }
 }
 
 const mutations = {
-  addMessage(state, message) {
+  ADD_MESSAGE(state, message) {
     state.chatMessages = [...state.chatMessages, message];
   }
 }
