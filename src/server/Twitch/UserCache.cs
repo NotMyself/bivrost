@@ -26,7 +26,7 @@ namespace Bivrost.Web.Twitch
 
     public Task<User> GetUserAsync(string userId)
     {
-      return Cache.GetOrCreateAsync(@"user-{userId}", async c => {
+      return Cache.GetOrCreateAsync($"user-{userId}", async c => {
         Logger.LogWarning("{@Event}",
           new { Event="User Cache Miss",
                 UserId= userId });
