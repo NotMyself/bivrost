@@ -1,7 +1,7 @@
 <template>
 <transition-group name="chat-box" class="chat-box" tag="div"
   enter-active-class="animated bounceInUp"
-  leave-active-class="animated fadeOutUp"
+  leave-active-class="animated fadeOutRight"
 >
   <ChatMessage v-for="(chatMessage) in chatMessages"
               v-bind:key="chatMessage.id"

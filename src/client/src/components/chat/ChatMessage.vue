@@ -41,11 +41,26 @@ export default {
   components:{
     DisplayText
   },
+  mounted: function () {
+    this.setTimeout();
+  },
   data: () => {
     return {
       shield,
       sword,
-      auth0
+      auth0,
+      age: 10 * 1000,
+      timeout: null
+    }
+  },
+  methods: {
+    remove: function () {
+      this.$el.remove();
+    },
+    setTimeout: function () {
+      this.timeout = setTimeout(() => {
+        this.remove();
+      }, this.age);
     }
   }
 }
