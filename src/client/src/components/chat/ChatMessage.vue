@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     remove: function () {
-      this.$el.remove();
+      this.$store.dispatch('chat/deleteMessage', this.chatMessage);
     },
     setTimeout: function () {
       this.timeout = setTimeout(() => {
