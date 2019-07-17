@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 import ChatList from '@/components/chat/ChatList.vue'
 
 export default {
@@ -16,12 +16,11 @@ export default {
       maxDisplay: 5
     }
   },
-  computed: mapState({
-    displayMessages: function(state) {
-      return state.chat.chatMessages.slice(
-            Math.max(state.chat.chatMessages.length - this.maxDisplay, 0));
-    }
-  })
+  computed: {
+    ...mapGetters('chat',[
+      'displayMessages'
+    ])
+  }
 };
 </script>
 
