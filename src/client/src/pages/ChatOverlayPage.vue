@@ -1,5 +1,5 @@
 <template>
-  <ChatList :chatMessages="displayMessages" />
+  <ChatList :chat-messages="displayMessages" />
 </template>
 
 <script>
@@ -7,7 +7,7 @@ import { mapGetters } from 'vuex'
 import ChatList from '@/components/chat/ChatList.vue'
 
 export default {
-  name: 'chatOverlayPage',
+  name: 'ChatOverlayPage',
   components:{
     ChatList
   },

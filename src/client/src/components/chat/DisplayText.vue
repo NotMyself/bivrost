@@ -1,9 +1,14 @@
 <template>
   <div>
     <template v-for="(word, i) in words">
-      <img :src="lookup[word]" v-bind:key="i"
-            v-if="lookup[word]" />
-      <template v-else> {{word}}</template>
+      <img
+        v-if="lookup[word]"
+        :key="i"
+        :src="lookup[word]"
+      >
+      <template v-else>
+        {{ word }}
+      </template>
     </template>
   </div>
 </template>
@@ -12,8 +17,14 @@
 export default {
   name: 'DisplayText',
   props: {
-    emotes: Array,
-    message: String
+    emotes: {
+      type: Array,
+      default: () => []
+    },
+    message: {
+      type: String,
+      default: ''
+    }
   },
   computed: {
     lookup() {

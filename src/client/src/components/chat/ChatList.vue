@@ -1,13 +1,17 @@
 <template>
-<transition-group name="chat-box" class="chat-box" tag="div"
-  enter-active-class="animated bounceInUp"
-  leave-active-class="animated fadeOutRight"
->
-  <ChatMessage v-for="(chatMessage) in chatMessages"
-              v-bind:key="chatMessage.id"
-              :chatMessage="chatMessage"
-  />
-</transition-group>
+  <transition-group
+    name="chat-box"
+    class="chat-box"
+    tag="div"
+    enter-active-class="animated bounceInUp"
+    leave-active-class="animated fadeOutRight"
+  >
+    <ChatMessage
+      v-for="(chatMessage) in chatMessages"
+      :key="chatMessage.id"
+      :chat-message="chatMessage"
+    />
+  </transition-group>
 </template>
 
 <script>
@@ -19,7 +23,10 @@ export default {
     ChatMessage
   },
   props: {
-    chatMessages: Array
+    chatMessages: {
+      type: Array,
+      default: () => []
+    }
   }
 }
 </script>

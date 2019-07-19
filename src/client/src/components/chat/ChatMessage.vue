@@ -1,28 +1,43 @@
 <template>
-  <b-card no-body :class="{
-                  'chat-message': true,
-                  'broadcaster': chatMessage.user.isBroadcaster,
-                  'subscriber': chatMessage.user.isSubscriber,
-                  'moderator': chatMessage.user.isModerator
-                }">
+  <b-card
+    no-body
+    :class="{
+      'chat-message': true,
+      'broadcaster': chatMessage.user.isBroadcaster,
+      'subscriber': chatMessage.user.isSubscriber,
+      'moderator': chatMessage.user.isModerator
+    }"
+  >
     <b-card-body>
       <b-card-img :src="chatMessage.user.profileImageUrl" />
-      <img class="watermark" :src="auth0" v-if="chatMessage.user.isBroadcaster" />
-      <img class="watermark" :src="shield"
-            v-if="chatMessage.user.isModerator
-              && !chatMessage.user.isBroadcaster" />
-      <img class="watermark" :src="sword"
-            v-if="chatMessage.user.isSubscriber
-              && !chatMessage.user.isBroadcaster
-              && !chatMessage.user.isModerator" />
+      <img
+        v-if="chatMessage.user.isBroadcaster"
+        class="watermark"
+        :src="auth0"
+      >
+      <img
+        v-if="chatMessage.user.isModerator
+          && !chatMessage.user.isBroadcaster"
+        class="watermark"
+        :src="shield"
+      >
+      <img
+        v-if="chatMessage.user.isSubscriber
+          && !chatMessage.user.isBroadcaster
+          && !chatMessage.user.isModerator"
+        class="watermark"
+        :src="sword"
+      >
       <b-card-text>
-        <DisplayText :emotes="chatMessage.emotes"
-                      :message="chatMessage.message" />
+        <DisplayText
+          :emotes="chatMessage.emotes"
+          :message="chatMessage.message"
+        />
       </b-card-text>
-    <b-card-title>{{chatMessage.user.displayName}}</b-card-title>
+      <b-card-title>{{ chatMessage.user.displayName }}</b-card-title>
     </b-card-body>
     <b-card-footer v-if="chatMessage.bits">
-      Cheer for {{chatMessage.bits}} bits
+      Cheer for {{ chatMessage.bits }} bits
     </b-card-footer>
   </b-card>
 </template>
@@ -35,23 +50,26 @@ import auth0 from "@/assets/auth0.svg"
 
 export default {
   name: 'ChatMessage',
-  props: {
-    chatMessage: Object
-  },
   components:{
     DisplayText
   },
-  mounted: function () {
-    this.setTimeout();
+  props: {
+    chatMessage: {
+      type: Object,
+      default: () => {}
+    }
   },
   data: () => {
     return {
       shield,
       sword,
       auth0,
-      age: 10 * 1000,
+      age: 100 * 1000,
       timeout: null
     }
+  },
+  mounted: function () {
+    this.setTimeout();
   },
   methods: {
     remove: function () {

@@ -1,5 +1,8 @@
 <template>
-  <b-container class="green-screen" fluid>
+  <b-container
+    class="green-screen"
+    fluid
+  >
     <slot />
   </b-container>
 </template>

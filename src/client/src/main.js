@@ -22,10 +22,10 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   store,
-  render: h => h(App),
   created() {
     this.$socket.start({
       log: false
     });
-  }
+  },
+  render: h => h(App)
 }).$mount("#app");

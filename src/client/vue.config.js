@@ -8,5 +8,9 @@ module.exports = {
     }
 
     config.plugins = plugins;
+  },
+
+  css: {
+    sourceMap: true
   }
 }
