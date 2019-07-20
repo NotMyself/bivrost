@@ -9,10 +9,10 @@ const getters = {
 
 const actions = {
   addMessage({ commit }, message) {
-    commit("ADD_MESSAGE", message);
+    commit('ADD_MESSAGE', message);
   },
   deleteMessage({ commit }, message) {
-    commit("DELETE_MESSAGE", message);
+    commit('DELETE_MESSAGE', message);
   }
 };
 

@@ -64,7 +64,7 @@ export default {
       shield,
       sword,
       auth0,
-      age: 100 * 1000,
+      age: 30 * 1000,
       timeout: null
     }
   },

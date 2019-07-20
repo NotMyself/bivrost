@@ -5,7 +5,9 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "test:unit": "vue-cli-service test:unit",
+    "test:unit:watch": "vue-cli-service test:unit --watch"
   },
   "dependencies": {
     "@aspnet/signalr": "^1.1.4",
@@ -22,11 +24,18 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.9.2",
     "@vue/cli-plugin-eslint": "^3.9.2",
+    "@vue/cli-plugin-unit-mocha": "^3.9.0",
     "@vue/cli-service": "^3.9.3",
+    "@vue/eslint-config-prettier": "^4.0.1",
+    "@vue/test-utils": "1.0.0-beta.29",
     "aspnet-webpack": "^3.0.0",
     "babel-eslint": "^10.0.2",
+    "chai": "^4.1.2",
+    "sinon": "^7.3.2",
+    "sinon-chai": "^3.3.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.2.3",
+    "lint-staged": "^8.1.5",
     "vue-template-compiler": "^2.5.21",
     "webpack-hot-middleware": "^2.25.0"
   },
@@ -37,7 +46,7 @@
     },
     "extends": [
       "plugin:vue/recommended",
-      "eslint:recommended"
+      "@vue/prettier"
     ],
     "parserOptions": {
       "parser": "babel-eslint"
@@ -51,5 +60,14 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  }
 }

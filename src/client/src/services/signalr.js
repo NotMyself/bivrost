@@ -8,7 +8,7 @@ import * as SignalR from '@aspnet/signalr';
 const EventEmitter = require('events');
 
 const defaultOptions = {
-  log: false,
+  log: false
 };
 
 class SocketConnection extends EventEmitter {
@@ -24,11 +24,15 @@ class SocketConnection extends EventEmitter {
     this.offline = false;
   }
 
-  async _initialize(connection = '', transportType = SignalR.HttpTransportType.None) {
+  async _initialize(
+    connection = '',
+    transportType = SignalR.HttpTransportType.None
+  ) {
     try {
       const con = connection || this.connection;
       const socket = new SignalR.HubConnectionBuilder()
-        .withUrl(con).build(transportType)
+        .withUrl(con)
+        .build(transportType);
 
       socket.connection.onclose = async () => {
         // eslint-disable-next-line no-console
@@ -74,7 +78,7 @@ class SocketConnection extends EventEmitter {
     this.listened.push(method);
 
     this.on('init', () => {
-      this.socket.on(method, (data) => {
+      this.socket.on(method, data => {
         // eslint-disable-next-line no-console
         if (this.options.log) console.log({ type: 'receive', method, data });
 
@@ -106,10 +110,9 @@ class SocketConnection extends EventEmitter {
     }
 
     return new Promise(async resolve =>
-      this.once('init', () =>
-        resolve(this.socket.invoke(methodName, ...args))));
+      this.once('init', () => resolve(this.socket.invoke(methodName, ...args)))
+    );
   }
-
 }
 
 if (!SignalR) {
@@ -126,38 +129,35 @@ function install(Vue, connection) {
   Vue.socket = Socket;
 
   Object.defineProperties(Vue.prototype, {
-
     $socket: {
       get() {
         return Socket;
-      },
-    },
-
+      }
+    }
   });
 
   Vue.mixin({
-
     created() {
       if (this.$options.sockets) {
         const methods = Object.getOwnPropertyNames(this.$options.sockets);
 
-        methods.forEach((method) => {
+        methods.forEach(method => {
           Socket.listen(method);
 
           Socket.on(method, data =>
-            this.$options.sockets[method].call(this, data));
+            this.$options.sockets[method].call(this, data)
+          );
         });
       }
 
       if (this.$options.subscribe) {
         Socket.on('authenticated', () => {
-          this.$options.subscribe.forEach((channel) => {
+          this.$options.subscribe.forEach(channel => {
             Socket.invoke('join', channel);
           });
         });
       }
-    },
-
+    }
   });
 }
 
