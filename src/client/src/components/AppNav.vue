@@ -1,26 +1,22 @@
 <template>
-  <b-navbar
-    toggleable="md"
-    type="light"
-    variant="light"
-  >
-    <b-navbar-toggle target="nav_collapse" />
-    <b-navbar-brand to="/">
-      Bivrost
-    </b-navbar-brand>
-    <b-collapse
-      id="nav_collapse"
-      is-nav
-    >
-      <b-navbar-nav>
-        <b-nav-item-dropdown text="Overlay">
-          <b-dropdown-item :to="{ name: 'ChatOverlayPage' }">
-            Chat
-          </b-dropdown-item>
-        </b-nav-item-dropdown>
-      </b-navbar-nav>
-    </b-collapse>
-  </b-navbar>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <router-link class="navbar-brand" to="/">Bivrost</router-link>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Overlays
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <router-link class="dropdown-item" :to="{ name: 'ChatOverlayPage' }">Chat</router-link>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </template>
 
 <script>

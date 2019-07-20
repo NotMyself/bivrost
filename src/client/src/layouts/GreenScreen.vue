@@ -1,10 +1,9 @@
 <template>
-  <b-container
-    class="green-screen"
-    fluid
+  <div
+    class="container-fluid green-screen"
   >
     <slot />
-  </b-container>
+  </div>
 </template>
 
 <script>

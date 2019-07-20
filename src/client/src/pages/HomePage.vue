@@ -1,10 +1,10 @@
 <template>
-  <b-container fluid>
+  <div class="container-fluid">
     <h3 class="text-center">
       HomePage
     </h3>
     <hr>
-  </b-container>
+  </div>
 </template>
 
 <script>

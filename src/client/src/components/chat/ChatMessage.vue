@@ -1,16 +1,14 @@
 <template>
-  <b-card
-    no-body
-    :class="{
-      'chat-message': true,
-      'broadcaster': chatMessage.user.isBroadcaster,
-      'subscriber': chatMessage.user.isSubscriber,
-      'moderator': chatMessage.user.isModerator
-    }"
-  >
-    <b-card-body>
-      <b-card-img :src="chatMessage.user.profileImageUrl" />
-      <img
+  <div :class="{
+    'card':true,
+    'chat-message': true,
+    'broadcaster': chatMessage.user.isBroadcaster,
+    'subscriber': chatMessage.user.isSubscriber,
+    'moderator': chatMessage.user.isModerator
+  }">
+  <div class="card-body">
+    <img class="card-img" :src="chatMessage.user.profileImageUrl">
+    <img
         v-if="chatMessage.user.isBroadcaster"
         class="watermark"
         :src="auth0"
@@ -28,18 +26,18 @@
         class="watermark"
         :src="sword"
       >
-      <b-card-text>
-        <DisplayText
-          :emotes="chatMessage.emotes"
-          :message="chatMessage.message"
-        />
-      </b-card-text>
-      <b-card-title>{{ chatMessage.user.displayName }}</b-card-title>
-    </b-card-body>
-    <b-card-footer v-if="chatMessage.bits">
+    <p class="card-text">
+      <DisplayText
+        :emotes="chatMessage.emotes"
+        :message="chatMessage.message"
+      />
+    </p>
+    <h4 class="card-title">{{ chatMessage.user.displayName }}</h4>
+  </div>
+  <div class="card-footer" v-if="chatMessage.bits">
       Cheer for {{ chatMessage.bits }} bits
-    </b-card-footer>
-  </b-card>
+  </div>
+</div>
 </template>
 
 <script>
