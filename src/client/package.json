@@ -45,8 +45,13 @@
     },
     "extends": [
       "plugin:vue/recommended",
-      "@vue/prettier"
+      "eslint:recommended",
+      "prettier/vue",
+      "plugin:prettier/recommended"
     ],
+    "rules": {
+      "vue/component-name-in-template-casing": ["error", "PascalCase"]
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }
