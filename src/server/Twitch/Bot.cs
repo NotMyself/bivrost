@@ -45,7 +45,7 @@ namespace Bivrost.Web.Twitch
         Client.OnWhisperReceived += OnWhisperReceived;
 
         Logger.LogInformation("{@Event}",
-          new { EventArgs="Bot Starting",
+          new { Event="Bot Starting",
                 Bot=Client.ConnectionCredentials.TwitchUsername });
 
         Client.Connect();
@@ -56,7 +56,7 @@ namespace Bivrost.Web.Twitch
     {
       return Task.Run(() => {
         Logger.LogInformation("{@Event}",
-          new { EventArgs="Bot Stopping",
+          new { Event="Bot Stopping",
                 Bot=Client.ConnectionCredentials.TwitchUsername });
 
         Client.Disconnect();
@@ -100,13 +100,13 @@ namespace Bivrost.Web.Twitch
     private void OnUserJoined(object sender, OnUserJoinedArgs e)
     {
       Logger.LogInformation("{@Event}",
-        new { EventArgs="User Joined Channel", e.Username, e.Channel });
+        new { Event="User Joined Channel", e.Username, e.Channel });
     }
 
     private void OnMessageReceived(object sender, OnMessageReceivedArgs e)
     {
       Logger.LogInformation("{@Event}",
-        new { EventArgs="Chat Message", e.ChatMessage.DisplayName, e.ChatMessage.Message });
+        new { Event="Chat Message", e.ChatMessage.DisplayName, e.ChatMessage.Message });
 
         Mediator.Publish(new RecievedChatMessageNotification(e.ChatMessage));
     }
@@ -114,7 +114,7 @@ namespace Bivrost.Web.Twitch
     private void OnWhisperReceived(object sender, OnWhisperReceivedArgs e)
     {
       Logger.LogInformation("{@Event}",
-        new { EventArgs="Whisper Message", e.WhisperMessage.DisplayName, e.WhisperMessage.Message });
+        new { Event="Whisper Message", e.WhisperMessage.DisplayName, e.WhisperMessage.Message });
     }
 
     private void OnRaidNotification(object sender, OnRaidNotificationArgs e)
