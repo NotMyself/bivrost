@@ -1,11 +1,7 @@
 <template>
   <div>
     <template v-for="(word, i) in words">
-      <img
-        v-if="lookup[word]"
-        :key="i"
-        :src="lookup[word]"
-      >
+      <img v-if="lookup[word]" :key="i" :src="lookup[word]" />
       <template v-else>
         {{ word }}
       </template>
@@ -28,18 +24,16 @@ export default {
   },
   computed: {
     lookup() {
-        return this.emotes.reduce((lookup, emote) => {
-          lookup[emote.name] = emote.imageUrl;
-          return lookup;
-        }, {});
+      return this.emotes.reduce((lookup, emote) => {
+        lookup[emote.name] = emote.imageUrl;
+        return lookup;
+      }, {});
     },
     words() {
       return this.message.split(' ');
     }
   }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

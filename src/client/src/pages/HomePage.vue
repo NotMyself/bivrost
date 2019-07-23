@@ -3,17 +3,14 @@
     <h3 class="text-center">
       HomePage
     </h3>
-    <hr>
+    <hr />
   </div>
 </template>
 
 <script>
-
 export default {
-  name: 'HomePage',
+  name: 'HomePage'
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

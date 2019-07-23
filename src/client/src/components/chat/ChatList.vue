@@ -7,7 +7,7 @@
     leave-active-class="animated fadeOutRight"
   >
     <ChatMessage
-      v-for="(chatMessage) in chatMessages"
+      v-for="chatMessage in chatMessages"
       :key="chatMessage.id"
       :chat-message="chatMessage"
     />
@@ -28,7 +28,7 @@ export default {
       default: () => []
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -40,14 +40,15 @@ export default {
   overflow: hidden;
   padding-right: 15px;
   padding-left: 25px;
-  padding-bottom: 70px
+  padding-bottom: 70px;
 }
 
-.chat-box-enter, .chat-box-leave-to {
+.chat-box-enter,
+.chat-box-leave-to {
   opacity: 0;
 }
 
 .chat-box-move {
-  transition: transform .5s;
+  transition: transform 0.5s;
 }
 </style>

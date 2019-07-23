@@ -17,13 +17,16 @@ export default {
   sockets: {
     receiveChatMessage(message) {
       this.$store.dispatch('chat/addMessage', message);
-    },
+    }
   }
-}
+};
 </script>
 
 <style>
-#app, body, html, .container-fluid {
+#app,
+body,
+html,
+.container-fluid {
   height: 100%;
 }
 </style>
