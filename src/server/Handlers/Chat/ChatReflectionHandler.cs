@@ -10,7 +10,6 @@ using Bivrost.Web.Signalr;
 using Bivrost.Web.Twitch;
 using Bivrost.Web.Twitch.Notifications;
 
-
 namespace Bivrost.Web.Handlers.Chat
 {
   public class ChatReflectionHandler : INotificationHandler<RecievedChatMessageNotification>
@@ -30,11 +29,15 @@ namespace Bivrost.Web.Handlers.Chat
 
     public async Task Handle(RecievedChatMessageNotification notification, CancellationToken cancellationToken)
     {
+      Logger.LogInformation("{@Event}",
+        new { Event="Execute Handler", Type=nameof(ChatReflectionHandler)});
+
       // do not reflect chat commands
       if (notification.Message.Message.StartsWith("!"))
         return;
 
       var user = await Cache.GetUserAsync(notification.Message.UserId);
+
       await HubContext.Clients.All.SendAsync("ReceiveChatMessage",
         new
         {

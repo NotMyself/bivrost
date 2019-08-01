@@ -30,6 +30,9 @@ namespace Bivrost.Web.Handlers.Chat
     {
       return Task.Run(() =>
       {
+        Logger.LogInformation("{@Event}",
+        new { Event="Execute Handler", Type=nameof(ShoutOutHandler)});
+
         if (Client.IsConnected && notification.Message.Message.StartsWith("!so"))
         {
           var match = CommandRegex.Match(notification.Message.Message);
