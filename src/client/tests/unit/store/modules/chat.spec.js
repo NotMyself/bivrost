@@ -3,12 +3,21 @@ import module from '@/store/modules/chat';
 
 describe('given a chat module', () => {
   describe('when getters are consumed', () => {
-    it('should get display messages', () => {
+    it('should get no display messages if empty', () => {
       const state = {
         chatMessages: []
       };
 
       expect(module.getters.displayMessages(state)).to.be.empty;
+    });
+
+    it('should get display message if available', () => {
+      const message = {};
+      const state = {
+        chatMessages: [message]
+      };
+
+      expect(module.getters.displayMessages(state)).to.contain(message);
     });
   });
   describe('when mutations are executed', () => {
