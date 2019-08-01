@@ -14,10 +14,10 @@ export default {
       return (this.$route.meta.layout || 'default') + '-layout';
     }
   },
-  sockets: {
-    receiveChatMessage(message) {
+  created() {
+    this.$socket.on('receiveChatMessage', message => {
       this.$store.dispatch('chat/addMessage', message);
-    }
+    });
   }
 };
 </script>
