@@ -1,21 +1,25 @@
+using System;
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.SignalR;
-
+using Microsoft.Extensions.Logging;
 using TwitchLib.Client.Events;
 
 namespace Bivrost.Web.Signalr
 {
 
-  public interface IClientHub
+  public class ClientHub : Hub
   {
-    Task ReceiveChatMessage(OnMessageReceivedArgs message);
-  }
-  public class ClientHub : Hub<IClientHub>
-  {
+    public ILogger<ClientHub> Logger { get; }
+    public ClientHub(ILogger<ClientHub> logger)
+    {
+      Logger = logger ?? throw new System.ArgumentNullException(nameof(logger));
+    }
     public async Task BroadcastChatMessage(OnMessageReceivedArgs message)
     {
-        await Clients.All.ReceiveChatMessage(message);
+      Logger.LogInformation("{@Event}", new { Event = "SignalR Send", Type = "BroadcastChatMessage" });
+
+      await Clients.All.SendAsync("receiveChatMessage", message);
     }
   }
 }
