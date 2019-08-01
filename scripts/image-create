@@ -2,4 +2,4 @@
 
 echo "Creating Docker Image"
 
-docker build . -t bivrost
+docker build  --no-cache . -t bivrost

@@ -2,6 +2,9 @@
 
 echo "Starting Production Bivrost Server"
 
+# load project secrets into environment variables
+export $(dotnet user-secrets list -p src/server/ | tr -d ' ')
+
 rm -rf build
 mkdir build
 mkdir build/server
