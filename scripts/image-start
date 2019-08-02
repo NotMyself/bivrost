@@ -5,9 +5,11 @@ echo "Starting Docker Image"
 # load project secrets into environment variables
 export $(dotnet user-secrets list -p src/server/ | tr -d ' ')
 
-
 docker run --rm -it -p 80:80/tcp \
   -e BIVROST_TWITCH_BOT_USER_NAME="$BIVROST_TWITCH_BOT_USER_NAME" \
   -e BIVROST_TWITCH_BOT_ACCESS_TOKEN="$BIVROST_TWITCH_BOT_ACCESS_TOKEN" \
   -e BIVROST_TWITCH_BOT_CHANNEL="$BIVROST_TWITCH_BOT_CHANNEL" \
+  -e Signalr_Errors="true" \
+  -e Logging:LogLevel:Microsoft.AspNetCore.SignalR="Trace" \
+  -e Logging:LogLevel:Microsoft.AspNetCore.Http.Connections="Trace" \
   bivrost:latest

@@ -15,5 +15,18 @@ namespace Bivrost.Web.Signalr
     {
       Logger = logger ?? throw new System.ArgumentNullException(nameof(logger));
     }
+
+    public override Task OnConnectedAsync()
+    {
+      return Task.Run(() =>
+      {
+        Logger.LogInformation("{@Event}",
+        new
+        {
+          Event = "SignalR Client Connected",
+          Id = Context.ConnectionId,
+        });
+      });
+    }
   }
 }
