@@ -9,7 +9,6 @@ docker run --rm -it -p 80:80/tcp \
   -e BIVROST_TWITCH_BOT_USER_NAME="$BIVROST_TWITCH_BOT_USER_NAME" \
   -e BIVROST_TWITCH_BOT_ACCESS_TOKEN="$BIVROST_TWITCH_BOT_ACCESS_TOKEN" \
   -e BIVROST_TWITCH_BOT_CHANNEL="$BIVROST_TWITCH_BOT_CHANNEL" \
-  -e Signalr_Errors="true" \
-  -e Logging:LogLevel:Microsoft.AspNetCore.SignalR="Trace" \
-  -e Logging:LogLevel:Microsoft.AspNetCore.Http.Connections="Trace" \
+  -e BIVROST_TWITCH_CLIENT_ID="$BIVROST_TWITCH_CLIENT_ID" \
+  -e BIVROST_TWITCH_CLIENT_SECRET="$BIVROST_TWITCH_CLIENT_SECRET" \
   bivrost:latest

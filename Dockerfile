@@ -26,6 +26,8 @@ COPY --from=buildcore /app/src/client/dist ./client
 ENV BIVROST_TWITCH_BOT_USER_NAME enter-your-username
 ENV BIVROST_TWITCH_BOT_ACCESS_TOKEN enter-your-access-token
 ENV BIVROST_TWITCH_BOT_CHANNEL enter-your-channel
+ENV BIVROST_TWITCH_CLIENT_ID enter-your-client-id
+ENV BIVROST_TWITCH_CLIENT_SECRET enter-your-client-secret
 
 EXPOSE 80
 
