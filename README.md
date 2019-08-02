@@ -20,6 +20,8 @@ As long as you have the development dependencies installed, the application can 
 1. Run the command `dotnet user-secrets set BIVROST_TWITCH_BOT_USER_NAME {bot-user-name}`.
 1. Run the command `dotnet user-secrets set BIVROST_TWITCH_BOT_ACCESS_TOKEN {bot-access-token}`.
 1. Run the command `dotnet user-secrets set BIVROST_TWITCH_BOT_CHANNEL {twitch-channel}`.
+1. Run the command `dotnet user-secrets set BIVROST_TWITCH_CLIENT_ID {twitch-client-id}`.
+1. Run the command `dotnet user-secrets set BIVROST_TWITCH_CLIENT_SECRET {twitch-client-secret}`.
   - **Note:** You must supply valid values for the **BIVROST_** environment variables, see [this](#obtaining-twitch-access-tokens) for instructions on how to obtain these values.
 1. Run script `scripts/local-start`.
 
@@ -30,8 +32,7 @@ The application can easily be executed locally with no development dependencies 
 1. Clone the repository: `git clone https://github.com/NotMyself/bivrost.git`.
 2. Change directory into the cloned repository `cd bivrost`.
 3. Run script `scripts/image-create`.
-4. Run script `BIVROST_TWITCH_BOT_USER_NAME={bot-user-name} BIVROST_TWITCH_BOT_ACCESS_TOKEN={bot-access-token} BIVROST_TWITCH_BOT_CHANNEL={twitch-channel} scripts/image-start`.
-   - **Note:** You must supply valid values for the **BIVROST_** environment variables, see [this](#obtaining-twitch-access-tokens) for instructions on how to obtain these values.
+4. Run script `scripts/image-start`.
 
 ### Running on Zeit Now
 
@@ -72,14 +73,23 @@ You will need to generate an OAuth authorization token with several specific sco
 7. Verify you are not a robot.
 8. Click the **Copy** button next to **Access Token**.
 
+Bivrost also makes call directly to the Twitch APIs. This requires to you to register the application to get client crendentials.
+
+1. Navigate to your [Twitch Developer Console](https://dev.twitch.tv/console).
+1. Click the **Register Your Application** button.
+1. Add **Bivrost** to the **Name** field.
+1. Add **http://example.com** to the **OAuth Redirect URL** field.
+  - **Note:** Bivrost does not currently use oAuth based authentication, so this value is not used.
+1. Select **Application Integration** from the **Category** dropdown.
+1. Click the **Create** button.
 
 | Env Var | Note |
 |---|---|
 | BIVROST_TWITCH_BOT_USER_NAME | Twitch Account Username for Bot |
 | BIVROST_TWITCH_BOT_ACCESS_TOKEN | OAuth Access Token for Twitch Account |
 | BIVROST_TWITCH_BOT_CHANNEL | Twitch Chat Channel for Bot to join and listen. |
-| BIVROST_TWITCH_CLIENT_ID |  |
-| BIVROST_TWITCH_CLIENT_SECRET|  |
+| BIVROST_TWITCH_CLIENT_ID | Twitch Application Client Id |
+| BIVROST_TWITCH_CLIENT_SECRET| Twitch Application Secret |
 
 ### Screen Shots
 
