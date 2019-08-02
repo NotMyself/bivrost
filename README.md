@@ -22,7 +22,7 @@ As long as you have the development dependencies installed, the application can 
 1. Run the command `dotnet user-secrets set BIVROST_TWITCH_BOT_CHANNEL {twitch-channel}`.
 1. Run the command `dotnet user-secrets set BIVROST_TWITCH_CLIENT_ID {twitch-client-id}`.
 1. Run the command `dotnet user-secrets set BIVROST_TWITCH_CLIENT_SECRET {twitch-client-secret}`.
-  - **Note:** You must supply valid values for the **BIVROST_** environment variables, see [this](#obtaining-twitch-access-tokens) for instructions on how to obtain these values.
+   - **Note:** You must supply valid values for the **BIVROST_** environment variables, see [this](#obtaining-twitch-access-tokens) for instructions on how to obtain these values.
 1. Run script `scripts/local-start`.
 
 ### Running in Docker
@@ -79,7 +79,7 @@ Bivrost also makes call directly to the Twitch APIs. This requires to you to reg
 1. Click the **Register Your Application** button.
 1. Add **Bivrost** to the **Name** field.
 1. Add **http://example.com** to the **OAuth Redirect URL** field.
-  - **Note:** Bivrost does not currently use oAuth based authentication, so this value is not used.
+   - **Note:** Bivrost does not currently use oAuth based authentication, so this value is not used.
 1. Select **Application Integration** from the **Category** dropdown.
 1. Click the **Create** button.
 
