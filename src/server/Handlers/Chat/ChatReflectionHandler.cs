@@ -38,10 +38,10 @@ namespace Bivrost.Web.Handlers.Chat
       if (notification.Message.Message.StartsWith("!"))
         return;
 
-      var user = await Cache.GetUserAsync(notification.Message.UserId);
-
       try
       {
+        var user = await Cache.GetUserAsync(notification.Message.UserId);
+
         await HubContext.Clients.All.SendAsync("ReceiveChatMessage",
           new
           {
@@ -66,7 +66,8 @@ namespace Bivrost.Web.Handlers.Chat
       catch (Exception e)
       {
         Logger.LogError(e, "{@Event}",
-        new {
+        new
+        {
           Event = "Execute Handler Error",
           Type = nameof(ChatReflectionHandler),
           Message = e.Message

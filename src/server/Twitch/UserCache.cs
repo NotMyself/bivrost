@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,15 +27,33 @@ namespace Bivrost.Web.Twitch
 
     public Task<User> GetUserAsync(string userId)
     {
-      return Cache.GetOrCreateAsync($"user-{userId}", async c => {
+      return Cache.GetOrCreateAsync($"user-{userId}", async c =>
+      {
         Logger.LogWarning("{@Event}",
-          new { Event="User Cache Miss",
-                UserId= userId });
+        new
+        {
+          Event = "User Cache Miss",
+          UserId = userId
+        });
 
-        var userResponse = await Api.Helix.Users.GetUsersAsync(
-                                  ids: new List<string> { userId });
+        try
+        {
+          var userResponse = await Api.Helix.Users.GetUsersAsync(
+                          ids: new List<string> { userId });
 
-        return userResponse.Users.First(u => u.Id.Equals(userId));
+          return userResponse.Users.First(u => u.Id.Equals(userId));
+        }
+        catch (Exception e)
+        {
+          Logger.LogError(e, "{@Event}", new
+          {
+            Event = "User Fetch Failed",
+            UserId = userId,
+            e.Message
+          });
+          throw e;
+        }
+
       });
     }
 
