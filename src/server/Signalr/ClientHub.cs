@@ -15,11 +15,5 @@ namespace Bivrost.Web.Signalr
     {
       Logger = logger ?? throw new System.ArgumentNullException(nameof(logger));
     }
-    public async Task BroadcastChatMessage(OnMessageReceivedArgs message)
-    {
-      Logger.LogInformation("{@Event}", new { Event = "SignalR Send", Type = "BroadcastChatMessage" });
-
-      await Clients.All.SendAsync("receiveChatMessage", message);
-    }
   }
 }
