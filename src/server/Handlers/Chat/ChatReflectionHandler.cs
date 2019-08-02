@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.SignalR;
@@ -27,10 +28,11 @@ namespace Bivrost.Web.Handlers.Chat
     }
 
 
-    public async Task Handle(RecievedChatMessageNotification notification, CancellationToken cancellationToken)
+    public async Task Handle(RecievedChatMessageNotification notification,
+                              CancellationToken cancellationToken)
     {
       Logger.LogInformation("{@Event}",
-        new { Event="Execute Handler", Type=nameof(ChatReflectionHandler)});
+        new { Event = "Execute Handler", Type = nameof(ChatReflectionHandler) });
 
       // do not reflect chat commands
       if (notification.Message.Message.StartsWith("!"))
@@ -38,26 +40,39 @@ namespace Bivrost.Web.Handlers.Chat
 
       var user = await Cache.GetUserAsync(notification.Message.UserId);
 
-      await HubContext.Clients.All.SendAsync("ReceiveChatMessage",
-        new
-        {
-          User = new
+      try
+      {
+        await HubContext.Clients.All.SendAsync("ReceiveChatMessage",
+          new
           {
-            user.Id,
-            user.DisplayName,
-            user.ProfileImageUrl,
-            notification.Message.IsBroadcaster,
-            notification.Message.IsModerator,
-            notification.Message.IsSubscriber,
-            notification.Message.Badges,
-            notification.Message.Bits
-          },
-          notification.Message.Id,
-          notification.Message.Message,
-          notification.Message.EmoteSet.Emotes,
-          notification.Message.Bits,
-          notification.Message.RoomId
+            User = new
+            {
+              user.Id,
+              user.DisplayName,
+              user.ProfileImageUrl,
+              notification.Message.IsBroadcaster,
+              notification.Message.IsModerator,
+              notification.Message.IsSubscriber,
+              notification.Message.Badges,
+              notification.Message.Bits
+            },
+            notification.Message.Id,
+            notification.Message.Message,
+            notification.Message.EmoteSet.Emotes,
+            notification.Message.Bits,
+            notification.Message.RoomId
+          });
+      }
+      catch (Exception e)
+      {
+        Logger.LogError(e, "{@Event}",
+        new {
+          Event = "Execute Handler Error",
+          Type = nameof(ChatReflectionHandler),
+          Message = e.Message
         });
+      }
+
     }
   }
 }
