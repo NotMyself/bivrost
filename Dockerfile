@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2.2-sdk-alpine AS buildcore
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-alpine AS buildcore
 WORKDIR /app
 
 RUN apk --no-cache add nodejs nodejs-npm
@@ -16,7 +16,7 @@ RUN npm install
 RUN npm run-script build
 
 #build Image
-FROM microsoft/dotnet:2.2-aspnetcore-runtime-alpine AS runtime
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine AS runtime
 WORKDIR /app
 
 
