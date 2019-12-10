@@ -69,7 +69,7 @@ namespace Nyami.AspNetCore.VueCliServices.Util
                         }
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     // ignore line error
                 }
@@ -120,7 +120,7 @@ namespace Nyami.AspNetCore.VueCliServices.Util
                 }
                 return null;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -193,7 +193,7 @@ namespace Nyami.AspNetCore.VueCliServices.Util
                 }
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
             return false;

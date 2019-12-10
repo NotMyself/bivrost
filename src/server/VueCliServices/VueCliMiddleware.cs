@@ -133,7 +133,7 @@ namespace Nyami.AspNetCore.VueCliServices
                             new CancellationTokenSource(timeoutMilliseconds).Token);
                         return;
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         await Task.Delay(500);
 
