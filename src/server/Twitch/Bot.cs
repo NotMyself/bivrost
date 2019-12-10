@@ -120,7 +120,7 @@ namespace Bivrost.Web.Twitch
     private void OnRaidNotification(object sender, OnRaidNotificationArgs e)
     {
       Logger.LogInformation("{@Event}",
-        new { Event="Raid", e.RaidNotificaiton.DisplayName, e.RaidNotificaiton.MsgParamViewerCount });
+        new { Event="Raid", e.RaidNotification.DisplayName, e.RaidNotification.MsgParamViewerCount });
     }
   }
 }

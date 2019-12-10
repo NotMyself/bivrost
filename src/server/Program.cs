@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-
+using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Sinks.SystemConsole.Themes;
 
@@ -18,7 +17,7 @@ namespace Bivrost.Web
 
       try
       {
-        CreateWebHostBuilder(args).Build().Run();
+        CreateHostBuilder(args).Build().Run();
       }
       finally
       {
@@ -26,12 +25,16 @@ namespace Bivrost.Web
       }
     }
 
-    public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-        WebHost.CreateDefaultBuilder(args)
-            .ConfigureAppConfiguration((context, config) =>
-            {
-              config.AddEnvironmentVariables(prefix: "BIVROST_");
-            })
-            .UseStartup<Startup>();
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((context, config) =>
+                {
+                  config.AddEnvironmentVariables(prefix: "BIVROST_");
+                })
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                  webBuilder.UseStartup<Startup>()
+                  .UseSerilog();
+                });
   }
 }

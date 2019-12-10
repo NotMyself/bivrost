@@ -2,13 +2,11 @@
 
 namespace Bivrost.Web.Controllers
 {
-  public class FallbackController : Controller
+  [ApiController]
+  [Route("[controller]")]
+  public class FallbackController : ControllerBase
   {
-    public IActionResult Index()
-    {
-      return File("~/index.html", "text/html");
-    }
-
+     [HttpGet]
     public IActionResult Test()
     {
       return Content("Passed");
