@@ -16,7 +16,7 @@ dotnet build \
 
 dotnet publish \
   --configuration Release \
-  --output ../../build/server \
+  --output build/server \
   ./src/server
 
 pushd src/client
