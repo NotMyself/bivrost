@@ -4,4 +4,8 @@ echo "Starting Bivrost Server"
 
 dotnet run \
   --configuration Debug \
-  --project src/server/
+  --project src/server/ \
+  & \
+  npm run serve --prefix src/client/ \
+  & \
+  fg
