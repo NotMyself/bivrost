@@ -2,8 +2,6 @@ import OBSWebSocket from 'obs-websocket-js';
 
 const client = new OBSWebSocket();
 
-client.connect();
-
 export default function createWebSocketPlugin() {
   return store => {
     client.on('ConnectionOpened', data => {
@@ -20,5 +18,7 @@ export default function createWebSocketPlugin() {
       if (state.obs.connected && mutation.type === 'obs/SEND_MESSAGE')
         client.send(mutation.payload.name, mutation.payload.settings);
     });
+
+    client.connect();
   };
 }

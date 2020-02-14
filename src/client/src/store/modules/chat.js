@@ -1,4 +1,6 @@
 const state = {
+  connected: false,
+  error: null,
   chatMessages: [],
   limit: 5
 };
@@ -13,6 +15,15 @@ const actions = {
   },
   deleteMessage({ commit }, message) {
     commit('DELETE_MESSAGE', message);
+  },
+  connectionOpened({ commit }) {
+    commit('SET_CONNECTION', true);
+  },
+  connectionClosed({ commit }) {
+    commit('SET_CONNECTION', false);
+  },
+  connectionError({ commit }, error) {
+    commit('SET_ERROR', error);
   }
 };
 
@@ -25,6 +36,12 @@ const mutations = {
   },
   DELETE_MESSAGE(state, message) {
     state.chatMessages = state.chatMessages.filter(m => m.id !== message.id);
+  },
+  SET_CONNECTION(state, message) {
+    state.connected = message;
+  },
+  SET_ERROR(state, error) {
+    state.error = error;
   }
 };
 
