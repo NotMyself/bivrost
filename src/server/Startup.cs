@@ -8,7 +8,6 @@ using MediatR;
 
 using Bivrost.Web.Signalr;
 using Bivrost.Web.Twitch;
-using Nyami.AspNetCore.VueCliServices;
 
 namespace Bivrost.Web
 {
@@ -48,6 +47,19 @@ namespace Bivrost.Web
       if (env.IsDevelopment())
       {
         app.UseDeveloperExceptionPage();
+        app.UseCors(builder =>
+        {
+          builder.WithOrigins(
+            "http://localhost", // local docker
+            "http://localhost:8080", // local docker explicit
+            "http://localhost:5000" // local bare metal
+            )
+              .AllowAnyHeader()
+              .WithMethods("GET", "POST")
+              .AllowCredentials();
+        });
+
+
       }
 
       app.UseRouting();
@@ -61,14 +73,9 @@ namespace Bivrost.Web
       });
 
       app.UseSpa(spa =>
-            {
-                spa.Options.SourcePath = Configuration["ClientProjectPath"];
-
-                if (env.IsDevelopment())
-                {
-                    spa.UseVueCliServer(npmScript: "serve");
-                }
-            });
+      {
+        spa.Options.SourcePath = Configuration["ClientProjectPath"];
+      });
 
     }
   }

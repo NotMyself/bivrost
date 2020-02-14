@@ -13,11 +13,6 @@ export default {
     layout() {
       return (this.$route.meta.layout || 'default') + '-layout';
     }
-  },
-  created() {
-    this.$socket.on('receiveChatMessage', message => {
-      this.$store.dispatch('chat/addMessage', message);
-    });
   }
 };
 </script>

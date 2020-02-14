@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import router from './router';
 import store from './store';
-import '@/plugins';
 import App from './App.vue';
 import Default from '@/layouts/Default.vue';
 import GreenScreen from '@/layouts/GreenScreen.vue';
