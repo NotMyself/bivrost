@@ -1,14 +1,16 @@
 import OBSWebSocket from 'obs-websocket-js';
 
-const client = new OBSWebSocket();
+function defaultClient() {
+  return new OBSWebSocket();
+}
 
-export default function createWebSocketPlugin() {
+export default function createWebSocketPlugin(client = defaultClient()) {
   return store => {
-    client.on('ConnectionOpened', data => {
-      store.dispatch('obs/connectionOpened', data);
+    client.on('ConnectionOpened', () => {
+      store.dispatch('obs/connectionOpened');
     });
-    client.on('ConnectionClosed', data => {
-      store.dispatch('obs/connectionClosed', data);
+    client.on('ConnectionClosed', () => {
+      store.dispatch('obs/connectionClosed');
     });
 
     client.on('error', err => {

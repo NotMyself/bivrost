@@ -1,11 +1,13 @@
 import { HubConnectionBuilder } from '@aspnet/signalr';
 
-const client = new HubConnectionBuilder()
-  .configureLogging(process.env.VUE_APP_SIGNALR_LOG_LEVEL)
-  .withUrl(process.env.VUE_APP_SIGNALR_HUB_URL)
-  .build();
+function defaultClient() {
+  return new HubConnectionBuilder()
+    .configureLogging(process.env.VUE_APP_SIGNALR_LOG_LEVEL)
+    .withUrl(process.env.VUE_APP_SIGNALR_HUB_URL)
+    .build();
+}
 
-export default function createWebSocketPlugin() {
+export default function createWebSocketPlugin(client = defaultClient()) {
   return store => {
     client.on('stateChanged', (oldState, newState) => {
       if (oldState !== newState && newState !== 'Connected')
