@@ -1,10 +1,5 @@
 <template>
-  <div class="container-fluid">
-    <h3 class="text-center">
-      HomePage
-    </h3>
-    <hr />
-  </div>
+  <v-container fluid fill-height> </v-container>
 </template>
 
 <script>

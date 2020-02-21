@@ -1,9 +1,9 @@
 <template>
-  <div id="app">
+  <v-app id="app">
     <component :is="layout">
       <router-view />
     </component>
-  </div>
+  </v-app>
 </template>
 
 <script>
@@ -11,7 +11,7 @@ export default {
   name: 'App',
   computed: {
     layout() {
-      return (this.$route.meta.layout || 'default') + '-layout';
+      return this.$route.meta.layout || 'default';
     }
   }
 };

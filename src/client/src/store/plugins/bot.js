@@ -17,14 +17,14 @@ export default function createWebSocketPlugin(client = defaultClient()) {
 
     client.on('receiveChatMessage', message => {
       store.dispatch('chat/addMessage', message);
-      store.dispatch('obs/sendMessage', {
-        name: 'SetSceneItemProperties',
-        settings: {
-          'scene-name': 'Pop-Ups',
-          item: 'Louie-Resubscribe',
-          visible: true
-        }
-      });
+      // store.dispatch('obs/sendMessage', {
+      //   name: 'SetSceneItemProperties',
+      //   settings: {
+      //     'scene-name': 'Pop-Ups',
+      //     item: 'Louie-Resubscribe',
+      //     visible: true
+      //   }
+      // });
     });
 
     client
