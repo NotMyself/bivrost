@@ -22,14 +22,15 @@
     "vuex": "^3.1.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.1.1",
-    "@vue/cli-plugin-eslint": "^4.1.1",
-    "@vue/cli-plugin-router": "^4.1.1",
-    "@vue/cli-plugin-unit-mocha": "^4.1.1",
-    "@vue/cli-plugin-vuex": "^4.1.1",
-    "@vue/cli-service": "^4.1.1",
+    "@vue/cli-plugin-babel": "^4.2.2",
+    "@vue/cli-plugin-eslint": "^4.2.2",
+    "@vue/cli-plugin-router": "^4.2.2",
+    "@vue/cli-plugin-unit-mocha": "^4.2.2",
+    "@vue/cli-plugin-vuex": "^4.2.2",
+    "@vue/cli-service": "^4.2.2",
     "@vue/eslint-config-prettier": "^5.1.0",
     "@vue/test-utils": "1.0.0-beta.30",
+    "aspnet-webpack": "^3.0.0",
     "babel-eslint": "^10.0.3",
     "chai": "^4.2.0",
     "eslint": "^5.16.0",
@@ -38,10 +39,9 @@
     "node-sass": "^4.13.0",
     "prettier": "^1.19.1",
     "sass-loader": "^8.0.0",
-    "vue-template-compiler": "^2.6.10",
-    "aspnet-webpack": "^3.0.0",
     "sinon": "^7.4.1",
     "sinon-chai": "^3.3.0",
+    "vue-template-compiler": "^2.6.10",
     "webpack-hot-middleware": "^2.25.0"
   },
   "eslintConfig": {
