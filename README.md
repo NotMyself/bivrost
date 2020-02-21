@@ -38,23 +38,6 @@ The application can easily be executed locally with no development dependencies 
 3. Run script `scripts/image-create`.
 4. Run script `scripts/image-start`.
 
-### Running on Zeit Now
-
-If you want to start using Bivrost as is with no customizations, this can easily be done with Zeit's Now platform.
-
-1. Create a Zeit Now [account](https://zeit.co/signup).
-2. Add environment secrets to your Now account for each [environment variable listed](#obtaining-twitch-access-tokens).
-   - **Note:** This currently can only be done using the [Now CLI](https://zeit.co/download#now-cli).
-   - Now CLI Command, ex: `now secrets add BIVROST_TWITCH_BOT_CHANNEL iamnotmyself`
-3. Browes to the repository on Github: [Bivrost](https://github.com/NotMyself/bivrost)
-4. Click the **Fork** button located on the right of the screen just under the main menu.
-5. Select the GitHub account you want to fork the repository too.
-6. Edit the **now.json** file and remove the **alias** property.
-   - **Note:** This tells my deployment to automatically assign this alias on successful deployments. You can set up something similar, [details](https://zeit.co/docs/v2/domains-and-aliases/aliasing-a-deployment).
-7. Connect the [Now for GitHub](https://zeit.co/github) application to your account.
-
-Once complete, Now will deploy an instance of Bivrost on every clean commit to your master branch. By default, it will also do a test deployment for app pull requests submitted.
-
 ### Obtaining Twitch Access Tokens
 
 Bivrost uses several bits of information to connect to stream chat.
