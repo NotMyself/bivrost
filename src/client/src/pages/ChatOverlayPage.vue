@@ -11,11 +11,6 @@ export default {
   components: {
     ChatList
   },
-  data: () => {
-    return {
-      maxDisplay: 5
-    };
-  },
   computed: {
     ...mapGetters('chat', ['displayMessages'])
   }

@@ -17,7 +17,7 @@ export default new Router({
     {
       path: '/overlays/chat',
       name: 'ChatOverlayPage',
-      meta: { layout: 'green-screen' },
+      meta: { layout: 'Overlay' },
       component: ChatOverlayPage
     }
   ]

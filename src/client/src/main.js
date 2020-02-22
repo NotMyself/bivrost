@@ -5,10 +5,10 @@ import App from './App.vue';
 import vuetify from './plugins/vuetify';
 
 import Default from '@/layouts/Default.vue';
-import GreenScreen from '@/layouts/GreenScreen.vue';
+import Overlay from '@/layouts/Overlay.vue';
 
 Vue.component('default', Default);
-Vue.component('green-screen', GreenScreen);
+Vue.component('green-screen', Overlay);
 
 Vue.config.productionTip = false;
 
