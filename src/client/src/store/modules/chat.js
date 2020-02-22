@@ -1,12 +1,11 @@
 const state = {
-  connected: false,
   error: null,
-  chatMessages: [],
+  messages: [],
   limit: 5
 };
 
 const getters = {
-  displayMessages: state => state.chatMessages
+  displayMessages: state => state.messages
 };
 
 const actions = {
@@ -15,34 +14,21 @@ const actions = {
   },
   deleteMessage({ commit }, message) {
     commit('DELETE_MESSAGE', message);
-  },
-  connectionOpened({ commit }) {
-    commit('SET_CONNECTION', true);
-  },
-  connectionClosed({ commit }) {
-    commit('SET_CONNECTION', false);
-  },
-  connectionError({ commit }, error) {
-    commit('SET_ERROR', error);
   }
 };
 
 const mutations = {
   ADD_MESSAGE(state, message) {
-    while (state.chatMessages.length >= state.limit) {
-      state.chatMessages.shift();
+    while (state.messages.length >= state.limit) {
+      state.messages.shift();
     }
-    state.chatMessages.push(message);
+    state.messages.push(message);
   },
   DELETE_MESSAGE(state, message) {
-    state.chatMessages = state.chatMessages.filter(m => m.id !== message.id);
+    state.messages = state.messages.filter(m => m.id !== message.id);
   },
-  SET_CONNECTION(state, message) {
-    state.connected = message;
-  },
-  SET_ERROR(state, error) {
-    state.error = error;
-  }
+  // eslint-disable-next-line no-unused-vars
+  CONNECT(state, message) {}
 };
 
 export default {

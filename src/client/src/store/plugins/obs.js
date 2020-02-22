@@ -1,5 +1,7 @@
 import OBSWebSocket from 'obs-websocket-js';
 
+const clientName = 'obs';
+
 function defaultClient() {
   return new OBSWebSocket();
 }
@@ -7,20 +9,24 @@ function defaultClient() {
 export default function createWebSocketPlugin(client = defaultClient()) {
   return store => {
     client.on('ConnectionOpened', () => {
-      store.dispatch('obs/connectionOpened');
+      store.dispatch('app/connectionOpened', clientName);
     });
     client.on('ConnectionClosed', () => {
-      store.dispatch('obs/connectionClosed');
+      store.dispatch('app/connectionClosed', clientName);
     });
 
     client.on('error', err => {
-      store.dispatch('obs/connectionError', err);
+      store.dispatch('app/connectionError', err);
     });
+
     store.subscribe((mutation, state) => {
+      if (!state.app.obsConnected && mutation.type === 'obs/CONNECT')
+        client.connect().catch(err => {
+          store.dispatch('app/connectionError', err);
+        });
+
       if (state.obs.connected && mutation.type === 'obs/SEND_MESSAGE')
         client.send(mutation.payload.name, mutation.payload.settings);
     });
-
-    client.connect();
   };
 }

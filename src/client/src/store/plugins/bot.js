@@ -11,8 +11,8 @@ export default function createWebSocketPlugin(client = defaultClient()) {
   return store => {
     client.on('stateChanged', (oldState, newState) => {
       if (oldState !== newState && newState !== 'Connected')
-        store.dispatch('chat/connectionClosed');
-      else store.dispatch('chat/connectionOpened');
+        store.dispatch('app/connectionClosed', 'bot');
+      else store.dispatch('app/connectionOpened', 'bot');
     });
 
     client.on('receiveChatMessage', message => {
@@ -27,13 +27,16 @@ export default function createWebSocketPlugin(client = defaultClient()) {
       // });
     });
 
-    client
-      .start()
-      .then(() => {
-        store.dispatch('chat/connectionOpened');
-      })
-      .catch(err => {
-        store.dispatch('chat/connectionError', err);
-      });
+    store.subscribe((mutation, state) => {
+      if (!state.app.bot && mutation.type === 'chat/CONNECT')
+        client
+          .start()
+          .then(() => {
+            store.dispatch('app/connectionOpened', 'bot');
+          })
+          .catch(err => {
+            store.dispatch('app/connectionError', err);
+          });
+    });
   };
 }
