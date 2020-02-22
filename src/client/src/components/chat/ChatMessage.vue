@@ -1,5 +1,35 @@
 <template>
-  <div
+  <v-card
+    :class="{
+      broadcaster: chatMessage.user.isBroadcaster,
+      subscriber: chatMessage.user.isSubscriber,
+      moderator: chatMessage.user.isModerator
+    }"
+    outlined
+    shaped
+  >
+    <v-list-item>
+      <v-list-item-avatar size="50" color="grey">
+        <v-img
+          height="50"
+          width="50"
+          :src="chatMessage.user.profileImageUrl"
+        ></v-img>
+      </v-list-item-avatar>
+      <v-list-item-content>
+        <v-card-text>
+          <DisplayText
+            :emotes="chatMessage.emotes"
+            :message="chatMessage.message"
+          />
+        </v-card-text>
+        <v-list-item-title class="headline mb-1">
+          {{ chatMessage.user.displayName }}
+        </v-list-item-title>
+      </v-list-item-content>
+    </v-list-item>
+  </v-card>
+  <!-- <div
     :class="{
       card: true,
       'chat-message': true,
@@ -40,7 +70,7 @@
     <div v-if="chatMessage.bits" class="card-footer">
       Cheer for {{ chatMessage.bits }} bits
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -70,7 +100,7 @@ export default {
     };
   },
   mounted: function() {
-    this.setTimeout();
+    //this.setTimeout();
   },
   methods: {
     remove: function() {
@@ -86,104 +116,25 @@ export default {
 </script>
 
 <style scoped>
-.card {
-  border: solid 3px;
-  border-radius: 20px 0px;
-  border-color: #44c7f4;
-  background-color: #f5f7f9;
+div.v-card {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+div.headline {
+  text-align: right;
+}
+div.v-avatar {
+  border: solid 1px #02b48f;
 }
 
 .moderator {
   border-color: #5c666f;
 }
-
 .subscriber {
   border-color: #02b48f;
 }
-
 .broadcaster {
-  border-color: #eb5423;
-}
-
-.card-img {
-  width: 50px;
-  position: absolute;
-  left: -25px;
-  bottom: -20px;
-  border-radius: 25px;
-  border: solid 3px;
-  border-color: #44c7f4;
-}
-
-.moderator .card-img {
-  border-color: #5c666f;
-}
-
-.subscriber .card-img {
-  border-color: #02b48f;
-}
-
-.broadcaster .card-img {
-  border-color: #eb5423;
-}
-
-.card-body {
-  padding-top: 10px;
-}
-
-.chat-message {
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
-
-.card-text {
-  margin-top: 5px;
-  margin-left: 15px;
-  margin-right: 15px;
-  margin-bottom: 15px;
-}
-
-.card-title {
-  opacity: 0.54;
-  font-weight: bold;
-  margin: 0;
-  position: absolute;
-  bottom: 3px;
-  right: 15px;
-}
-
-.card-footer {
-  background-color: #f0cc00;
-  position: absolute;
-  font-size: 12px;
-  font-weight: bolder;
-  color: #5c666f;
-  top: 77px;
-  right: 25px;
-  padding-top: 0;
-  padding-bottom: 0px;
-}
-
-div.card-footer {
-  border-radius: 0px 0px 15px 15px;
-}
-
-.watermark {
-  width: 25px;
-  opacity: 0.25;
-  position: absolute;
-  right: 15px;
-}
-
-.broadcaster .watermark {
-  opacity: 1;
-  width: 40px;
-  background-color: #f5f7f9;
-  padding: 3px;
-  right: -15px;
-  top: -15px;
-  border-radius: 10px;
-  border: solid 3px;
-  border-color: #eb5423;
+  border-color: #eb5423 !important;
 }
 </style>

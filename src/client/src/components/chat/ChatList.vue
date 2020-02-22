@@ -32,23 +32,10 @@ export default {
 </script>
 
 <style scoped>
-.chat-box {
-  width: 340px;
-  height: 1080px;
-  display: table-cell;
-  vertical-align: bottom;
-  overflow: hidden;
-  padding-right: 15px;
-  padding-left: 25px;
-  padding-bottom: 70px;
-}
-
-.chat-box-enter,
-.chat-box-leave-to {
-  opacity: 0;
-}
-
-.chat-box-move {
-  transition: transform 0.5s;
+div.chat-box {
+  display: flex;
+  flex-direction: column;
+  align-content: bottom;
+  align-content: flex-end;
 }
 </style>

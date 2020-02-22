@@ -1,5 +1,4 @@
 const state = {
-  error: null,
   messages: [],
   limit: 5
 };

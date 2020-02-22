@@ -8,7 +8,7 @@ import Default from '@/layouts/Default.vue';
 import Overlay from '@/layouts/Overlay.vue';
 
 Vue.component('default', Default);
-Vue.component('green-screen', Overlay);
+Vue.component('overlay', Overlay);
 
 Vue.config.productionTip = false;
 

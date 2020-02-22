@@ -1,7 +1,7 @@
 <template>
-  <div class="container-fluid green-screen">
+  <v-container fill-height>
     <slot />
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -11,7 +11,11 @@ export default {
 </script>
 
 <style scoped>
-.green-screen {
-  height: 100%;
+div.container {
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 0px;
+  max-width: 1920px;
+  max-height: 1080px;
 }
 </style>
