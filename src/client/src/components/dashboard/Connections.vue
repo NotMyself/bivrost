@@ -2,7 +2,7 @@
   <div class="text-center">
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
-        <v-chip class="ma-2" v-on="on">
+        <v-chip class="ma-2" v-on="on" @click.stop="() => connect('server')">
           <v-avatar left>
             <v-icon :color="getColor(serverConnected)">mdi-antenna</v-icon>
           </v-avatar>
@@ -14,7 +14,7 @@
 
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
-        <v-chip class="ma-2" v-on="on">
+        <v-chip class="ma-2" v-on="on" @click.stop="() => connect('obs')">
           <v-avatar left>
             <v-icon :color="getColor(obsConnected)">mdi-antenna</v-icon>
           </v-avatar>
@@ -26,7 +26,7 @@
 
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
-        <v-chip class="ma-2" v-on="on">
+        <v-chip class="ma-2" v-on="on" @click.stop="() => connect('chat')">
           <v-avatar left>
             <v-icon :color="getColor(botConnected)">mdi-antenna</v-icon>
           </v-avatar>
