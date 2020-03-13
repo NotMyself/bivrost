@@ -1,12 +1,12 @@
 <template>
   <v-card
+    outlined
+    shaped
     :class="{
       broadcaster: chatMessage.user.isBroadcaster,
       subscriber: chatMessage.user.isSubscriber,
       moderator: chatMessage.user.isModerator
     }"
-    outlined
-    shaped
   >
     <v-list-item>
       <v-list-item-avatar size="50" color="grey">
@@ -23,7 +23,7 @@
             :message="chatMessage.message"
           />
         </v-card-text>
-        <v-list-item-title class="headline mb-1">
+        <v-list-item-title>
           {{ chatMessage.user.displayName }}
         </v-list-item-title>
       </v-list-item-content>
@@ -115,26 +115,26 @@ export default {
 };
 </script>
 
-<style scoped>
-div.v-card {
-  width: 100%;
-  margin-bottom: 5px;
-}
+<style lang="scss" scoped>
+// div.v-card {
+//   width: 100%;
+//   margin-bottom: 5px;
+// }
 
-div.headline {
-  text-align: right;
-}
-div.v-avatar {
-  border: solid 1px #02b48f;
-}
+// div.headline {
+//   text-align: right;
+// }
+// div.v-avatar {
+//   border: solid 1px #02b48f;
+// }
 
-.moderator {
-  border-color: #5c666f;
-}
-.subscriber {
-  border-color: #02b48f;
-}
-.broadcaster {
-  border-color: #eb5423 !important;
-}
+// .moderator {
+//   border-color: #5c666f;
+// }
+// .subscriber {
+//   border-color: #02b48f;
+// }
+// .broadcaster {
+//   border-color: #eb5423 !important;
+// }
 </style>

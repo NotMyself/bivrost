@@ -8,7 +8,7 @@ npm i
 
 popd > /dev/null
 
-pushd /src/server
+pushd ./src/server
 
 dotnet restore .
 
