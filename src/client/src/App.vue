@@ -26,12 +26,3 @@ export default {
   }
 };
 </script>
-
-<style>
-#app,
-body,
-html,
-.container-fluid {
-  height: 100%;
-}
-</style>
