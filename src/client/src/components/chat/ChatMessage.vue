@@ -1,34 +1,27 @@
 <template>
-  <v-card
-    outlined
-    shaped
-    :class="{
-      broadcaster: chatMessage.user.isBroadcaster,
-      subscriber: chatMessage.user.isSubscriber,
-      moderator: chatMessage.user.isModerator
-    }"
-  >
-    <v-list-item>
-      <v-list-item-avatar size="50" color="grey">
-        <v-img
-          height="50"
-          width="50"
-          :src="chatMessage.user.profileImageUrl"
-        ></v-img>
-      </v-list-item-avatar>
-      <v-list-item-content>
-        <v-card-text>
-          <DisplayText
-            :emotes="chatMessage.emotes"
-            :message="chatMessage.message"
-          />
-        </v-card-text>
-        <v-list-item-title>
-          {{ chatMessage.user.displayName }}
-        </v-list-item-title>
-      </v-list-item-content>
-    </v-list-item>
-  </v-card>
+  <div>
+    <v-card class="mx-auto" max-width="344" outlined shaped>
+      <v-list-item two-line>
+        <v-list-item-avatar size="50" color="grey">
+          <v-img height="50" width="50" :src="chatMessage.user.profileImageUrl">
+          </v-img>
+        </v-list-item-avatar>
+        <v-list-item-content>
+          <v-list-item-content>
+            <v-list-item-subtitle>
+              <DisplayText
+                :emotes="chatMessage.emotes"
+                :message="chatMessage.message"
+              />
+            </v-list-item-subtitle>
+            <v-list-item-title>
+              {{chatMessage.user.displayName}}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item-content>
+      </v-list-item>
+    </v-card>
+  </div>
   <!-- <div
     :class="{
       card: true,

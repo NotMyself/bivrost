@@ -1,9 +1,11 @@
 <template>
-  <v-row>
-    <v-col cols="3" offset="9" align-self="strech">
-      <ChatList :chatMessages="displayMessages" />
-    </v-col>
-  </v-row>
+  <v-container>
+    <v-row>
+      <v-col cols="3" offset="9" align-self="strech">
+        <ChatList :chatMessages="displayMessages" />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -22,8 +24,8 @@ export default {
 </script>
 
 <style scoped>
-div.col {
+/* div.col {
   position: absolute;
   bottom: 0;
-}
+} */
 </style>

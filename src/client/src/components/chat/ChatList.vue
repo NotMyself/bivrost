@@ -32,10 +32,10 @@ export default {
 </script>
 
 <style scoped>
-div.chat-box {
+/* div.chat-box {
   display: flex;
   flex-direction: column;
   align-content: bottom;
   align-content: flex-end;
-}
+} */
 </style>
